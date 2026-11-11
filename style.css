@@ -615,3 +615,21 @@ h1,h2,h3,.statement{text-wrap:balance}
 /* 모바일 마무리 */
 @media (max-width:1180px){.brand-grid{grid-template-columns:1fr;gap:40px}}
 @media (max-width:860px){.hero-bar div{white-space:normal}.hero-bar b{font-size:17px;letter-spacing:-.04em}}
+
+/* 모바일: 좌우 여백을 줄여 내용을 넓게 */
+@media (max-width:560px){
+  :root{--pad:16px}
+  .tt{padding:28px 18px}
+  .tt-img{max-width:none}
+  .biz .b-in{padding:26px 22px 28px}
+  .orbit{max-width:none}
+  .cert{padding:26px 20px 28px}
+  .zz-row img{border-radius:18px}
+  .statement{font-size:27px}
+  .co-txt .lead{font-size:17px}
+  .ceo-msg{font-size:17px}
+  .year li{font-size:16px}
+  .year li.hl{font-size:18px}
+  .news-item .t{font-size:16.5px}
+  .c-big{font-size:26px}
+}
