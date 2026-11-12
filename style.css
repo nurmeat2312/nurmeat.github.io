@@ -703,3 +703,7 @@ h1,h2,h3,.statement{text-wrap:balance}
   .certs.c5{grid-template-columns:1fr}
   .certs.c5 .cert:last-child{grid-column:auto}
 }
+@media (max-width:860px){
+  .orbit .hub,.orbit .sat,.orbit .sat.s1,.orbit .sat.s2,.orbit .sat.s3{position:static;margin:0;left:auto;top:auto;width:auto;height:auto}
+  .sat:hover,.hub:hover{transform:none}
+}
