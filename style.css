@@ -646,3 +646,6 @@ h1,h2,h3,.statement{text-wrap:balance}
   .feed-row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-top:56px;margin-right:calc(var(--pad) * -1);padding-right:var(--pad)}
   .feed-row figure{flex:0 0 72%;scroll-snap-align:start}
 }
+
+.brand-two img{aspect-ratio:1/1}
+.brand-two img:nth-child(2){margin-top:0}
