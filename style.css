@@ -695,3 +695,20 @@ h1,h2,h3,.statement{text-wrap:balance}
   .orbit .hub,.orbit .sat,.orbit .sat.s1,.orbit .sat.s2,.orbit .sat.s3{position:static;margin:0;left:auto;top:auto;width:auto;height:auto}
   .sat:hover,.hub:hover{transform:none}
 }
+
+/* v7: 첫 화면 영문 제목 Archivo SemiBold + 왼쪽에서 오른쪽으로 쓰이듯 나타나는 연출 */
+@font-face{font-family:"Archivo";src:url("./assets/font/Archivo-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:block}
+.loader{display:none}
+.hero h1{font-family:"Archivo","Pretendard Variable",Pretendard,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1.02}
+.hero h1 .ln{overflow:visible;padding-bottom:0}
+.js .hero h1 .ln span,.hero h1 .ln span{display:inline-block;transform:none;transition:none;padding:0 .12em .1em 0;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 46.5%,transparent 53.5%);mask-image:linear-gradient(90deg,#000 0,#000 46.5%,transparent 53.5%);
+  -webkit-mask-size:215% 100%;mask-size:215% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:100% 0;mask-position:100% 0;
+  animation:heroWrite .68s linear 0s both}
+.hero h1 .ln:nth-child(2) span{animation-delay:.48s;animation-duration:.72s;animation-timing-function:cubic-bezier(.35,.35,.4,1)}
+@keyframes heroWrite{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
+.js .hero .kicker,.js .hero .sub,.js .hero-bar{opacity:1;transform:none;transition:none}
+@media (prefers-reduced-motion:reduce){
+  .js .hero h1 .ln span,.hero h1 .ln span{animation:none;-webkit-mask-image:none;mask-image:none}
+}
