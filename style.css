@@ -1118,3 +1118,18 @@ body:not(.vb) #history .year li.hl{color:var(--ink)}
 body:not(.vb) #history .year li span{color:var(--deep)}
 body:not(.vb) #history .year li small{color:var(--mute)}
 body:not(.vb) #history .fx-bub{display:none}
+
+/* v24: 글자 단계·여백·등장 효과 통일 */
+.hx.en.big,#brand .hx.en.big{font-size:clamp(44px,6.2vw,104px);letter-spacing:-.045em}
+.bp h3,.fac h3,.pat h3{font-family:inherit;font-size:clamp(20px,1.9vw,28px);font-weight:800;line-height:1.35;letter-spacing:-.035em}
+.fac p,.pat p:not(.lab),.bp p{font-size:17px;line-height:1.7}
+.l3-h{font-weight:800}
+.l3-k{font-size:14px}
+.js .hx.rv{transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1),filter 1s ease}
+body:not(.vb) #quality{padding-top:var(--pt)}
+#brand,body:not(.vb) #history{padding-top:calc(var(--pt) + var(--tz)*.3)}
+.np2-ph .b,.np2-ph .c{border-radius:26px}
+.co2{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.co2 .body{font-size:17px;line-height:1.8}
+.bp figure img[src*="line-4"]{filter:brightness(1.14)}
+@media (max-width:860px){.np2-ph .b,.np2-ph .c{border-radius:18px}.co2{grid-template-columns:1fr}}
