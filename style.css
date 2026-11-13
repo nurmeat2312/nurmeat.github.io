@@ -1007,3 +1007,7 @@ h1,h2,h3,.statement{text-wrap:balance}
 .pin-tx .no{font-size:19px;line-height:1.6}
 #technology .node .ic{font-size:21px}
 #history .year .y{font-size:clamp(38px,4.2vw,68px)}
+
+/* v16: 연혁·뉴스는 접지 않고 전부 보여준다 */
+.years .year li,.years:not(.all) .year li:not(.hl){display:grid}
+.news-list .news-item,.news-list:not(.all) .news-item:nth-child(n+4),.news-list:not(.all) .news-item:nth-child(n+5){display:grid}
