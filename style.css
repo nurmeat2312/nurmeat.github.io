@@ -1029,3 +1029,12 @@ h1,h2,h3,.statement{text-wrap:balance}
 .l3::after{content:"";position:absolute;left:0;right:0;bottom:0;height:min(38%,300px);background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none;z-index:1}
 .l3-tx{z-index:2}
 #company{padding-top:clamp(40px,5vw,80px)}
+
+/* v19: 널품 구좌 정돈 (겹침·잘림 없이 격자에 맞춤) */
+.np2{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:center}
+#brand .hx.en.big{font-size:clamp(44px,6.2vw,104px)}
+.np2-ph{display:grid;grid-template-columns:1fr 1fr;gap:20px;row-gap:20px}
+.np2-ph img{transform:none;border-radius:20px;box-shadow:none}
+.np2-ph .a{grid-column:1/-1;border-radius:0;background:none;padding:0}
+.np2-ph .b,.np2-ph .c{grid-column:auto;margin-top:0;aspect-ratio:1/1;object-fit:cover;box-shadow:none}
+@media (max-width:860px){.np2-ph{gap:10px}.np2-ph .c{margin-top:0}}
