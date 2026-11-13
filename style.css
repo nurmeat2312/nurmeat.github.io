@@ -712,3 +712,34 @@ h1,h2,h3,.statement{text-wrap:balance}
 @media (prefers-reduced-motion:reduce){
   .js .hero h1 .ln span,.hero h1 .ln span{animation:none;-webkit-mask-image:none;mask-image:none}
 }
+
+/* v8: 사업영역 = 왼쪽 목록 + 오른쪽 큰 사진 (모바일은 아코디언) */
+.bz{display:grid;grid-template-columns:5fr 6fr;column-gap:clamp(40px,7vw,120px);align-items:start;text-align:left}
+.bz-list{border-top:1px solid var(--ink)}
+.bi{border-bottom:1px solid var(--line)}
+.bi h3{margin:0;font:inherit}
+.bi-h{display:block;width:100%;text-align:left;padding:28px 44px 28px 0;position:relative;background:none;border:0;font:inherit;color:inherit;cursor:pointer}
+.bi-h .t{display:block;font-size:clamp(22px,2vw,31px);font-weight:700;letter-spacing:-.035em;line-height:1.3;color:var(--ink-2);transition:color .2s}
+.bi-h .o{display:block;margin-top:5px;font-size:15.5px;font-weight:600;color:var(--ink-2)}
+.bi.on .bi-h .t,.bi-h:hover .t{color:var(--ink)}
+.bi-h::after{content:"";position:absolute;right:8px;top:40px;width:10px;height:10px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(-45deg)}
+.bi.on .bi-h::after{border-color:var(--red)}
+.bi-h:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+.bi-b{display:none;padding:0 0 30px}
+.bi.on .bi-b{display:block}
+.bi-b img{display:none}
+.bi-b p{font-size:16.5px;line-height:1.8;color:var(--ink-2);max-width:34em}
+.bi-b .tags{margin-top:14px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.bi-b .tlink{display:inline-flex;align-items:center;min-height:44px;margin-top:16px;font-weight:700;color:var(--red);border-bottom:1px solid currentColor}
+.bi-b .tlink::after{content:"→";margin-left:8px}
+.bz-ph{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--soft)}
+.bz-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .22s}
+.bz-ph img.on{opacity:1}
+@media (max-width:1023px){
+  .bz{display:block}
+  .bz-ph{display:none}
+  .bi-b img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;margin-bottom:18px}
+  .bi-h{padding:22px 40px 22px 0}
+  .bi-h::after{transform:rotate(45deg);top:30px}
+  .bi.on .bi-h::after{transform:rotate(-135deg);top:36px}
+}
