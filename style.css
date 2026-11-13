@@ -1047,3 +1047,40 @@ h1,h2,h3,.statement{text-wrap:balance}
   -webkit-text-stroke:1.4px rgba(255,255,255,.82);paint-order:stroke fill;transition:background-position .25s linear}
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){.hero h1.h3d .ch{color:#fff;-webkit-text-fill-color:#fff}}
 @media (max-width:860px){.hero h1.h3d .ch{-webkit-text-stroke-width:1px}}
+
+/* v21: 구좌와 구좌 사이를 색이 번지듯 잇는다 (각진 경계와 둥근 시트 제거) */
+:root{--tz:clamp(140px,19vw,270px);--pt:clamp(88px,11vw,170px)}
+.sheet{border-radius:0;margin-top:0}
+#business{background:linear-gradient(180deg,#fff,var(--soft)) top/100% var(--tz) no-repeat,var(--soft)}
+#technology{padding-top:calc(var(--pt) + var(--tz)*.9);
+  background:linear-gradient(180deg,var(--soft) 0,#CFE4EF 16%,#85C0DD 36%,#1F7FB0 58%,#103C55 80%,var(--dark-2) 100%) top/100% calc(var(--tz)*1.5) no-repeat,var(--dark-2)}
+#quality{padding-top:calc(var(--pt) + var(--tz)*.9);
+  background:linear-gradient(180deg,var(--dark-2) 0,#103C55 16%,#1F7FB0 36%,#85C0DD 58%,#DCEBF2 80%,#fff 100%) top/100% calc(var(--tz)*1.5) no-repeat,#fff}
+#brand{padding-top:calc(var(--pt) + var(--tz)*.45);
+  background:linear-gradient(180deg,#fff 0,#DCEBF2 40%,var(--sky) 100%) top/100% var(--tz) no-repeat,var(--sky)}
+#history{padding-top:calc(var(--pt) + var(--tz)*.6);
+  background:linear-gradient(180deg,var(--sky) 0,#1F7FB0 38%,#103C55 72%,var(--dark) 100%) top/100% calc(var(--tz)*1.2) no-repeat,var(--dark)}
+#news{padding-top:calc(var(--pt) + var(--tz)*.9);
+  background:linear-gradient(180deg,var(--dark) 0,#103C55 16%,#1F7FB0 36%,#85C0DD 58%,#DCEBF2 80%,#fff 100%) top/100% calc(var(--tz)*1.5) no-repeat,#fff}
+#contact{padding-top:calc(var(--pt) + var(--tz)*.9);
+  background:linear-gradient(180deg,#fff 0,#CFE4EF 16%,#85C0DD 36%,#1F7FB0 58%,#103C55 80%,#0A0B0C 100%) top/100% calc(var(--tz)*1.5) no-repeat,#0A0B0C}
+@media (max-width:860px){:root{--pt:68px}}
+
+/* v22: 생산시설 설비 4종을 넘기지 않고 한 번에 보여준다 */
+.fac{list-style:none;margin:clamp(56px,7vw,110px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(44px,5vw,84px) clamp(24px,3.4vw,56px);align-items:start}
+.fac li{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:8px}
+.fac li:nth-child(even){margin-top:clamp(48px,8vw,130px)}
+.fac figure{grid-column:1/-1;margin:0 0 24px;border-radius:26px;overflow:hidden;aspect-ratio:4/3;background:#111}
+.fac figure img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.fac li:hover figure img{transform:scale(1.05)}
+.fac .no{font-family:"Archivo","Pretendard Variable",sans-serif;font-weight:600;font-size:19px;line-height:1.6;color:var(--sky);grid-row:2/4}
+.fac h3{font-size:clamp(20px,1.9vw,28px);font-weight:800;letter-spacing:-.035em;margin:0;color:#fff}
+.fac p{font-size:16px;line-height:1.7;color:rgba(255,255,255,.78);margin:8px 0 0;max-width:34em}
+#technology .pat{margin-top:clamp(64px,8vw,120px)}
+@media (max-width:860px){
+  .fac{grid-template-columns:1fr;gap:40px}
+  .fac li:nth-child(even){margin-top:0}
+  .fac figure{border-radius:18px;aspect-ratio:3/2;margin-bottom:16px}
+  .fac p{font-size:15px}
+}
+@media (max-width:860px){.np2{grid-template-columns:1fr;gap:28px}}
