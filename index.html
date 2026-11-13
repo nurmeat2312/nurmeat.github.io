@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="./assets/font/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/font/Archivo-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./style.css?v=2026.11.14b">
+<link rel="stylesheet" href="./style.css?v=2026.11.14c">
 </head>
 <body>
 <!--BODY-->
@@ -283,6 +283,7 @@
           <li><span>12</span><div>널미트 창업, 식육포장처리업으로 B2B 육류 공급 시작</div></li>
         </ul></div>
       </div>
+      <button type="button" class="more-btn" data-more=".years" aria-expanded="false">전체 연혁 보기</button>
     </div>
   </section>
 
@@ -301,6 +302,7 @@
         <a class="news-item" href="https://dhnews.co.kr/news/view/1065596380600271" target="_blank" rel="noopener"><span class="cat">보도자료</span><span class="t">HACCP 인증 완료한 ㈜널미트, 수비드 육가공 전문 공장으로 위생력 강화</span><span class="d">2025.05.14</span><span class="ar">→</span></a>
         <a class="news-item" href="https://www.imaeil.com/page/view/2024123115491862179" target="_blank" rel="noopener"><span class="cat">사회공헌</span><span class="t">"건강한 나눔 이어갈 것"··· ㈜널미트, 사랑의 연탄 나눔 봉사</span><span class="d">2024.12.31</span><span class="ar">→</span></a>
       </div>
+      <button type="button" class="more-btn" data-more=".news-list" aria-expanded="false">뉴스 더 보기</button>
     </div>
   </section>
 
@@ -398,6 +400,10 @@
       el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
         el.style.setProperty('--rx',((.5-y)*9).toFixed(2)+'deg');el.style.setProperty('--ry',((x-.5)*11).toFixed(2)+'deg');el.style.setProperty('--gx',(x*100).toFixed(1)+'%');el.style.setProperty('--gy',(y*100).toFixed(1)+'%');});
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
+
+  /* 모바일: 연혁·뉴스 접기 */
+  [].slice.call(document.querySelectorAll('.more-btn')).forEach(function(b){var t=document.querySelector(b.getAttribute('data-more')),o=b.textContent;
+    b.addEventListener('click',function(){var on=t.classList.toggle('all');b.setAttribute('aria-expanded',on);b.textContent=on?'접기':o;});});
 
   /* process viewer */
   var tabs=document.querySelectorAll('.proc-list button'),imgs=document.querySelectorAll('.proc-stage img'),cnt=document.getElementById('procCnt'),cur=0,timer=null,auto=true;
