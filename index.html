@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14z">
+<link rel="stylesheet" href="./style.css?v=2026.11.14h4">
 </head>
 <body>
 <!--BODY-->
@@ -60,13 +60,7 @@
       <div class="copy">
         <p class="kicker">NURMEAT Co., Ltd.</p>
         <h1><span class="ln"><span>Meat Meets</span></span><span class="ln"><span>Wellness.</span></span></h1>
-        <p class="sub"><b>프랜차이즈·식품 브랜드를 위한 맞춤 육가공</b><span>거래처 규격에 맞춰 원료육을 절단하고, 양념·수비드 가공부터 진공포장까지 진행합니다.</span></p>
-      </div>
-      <div class="hero-bar">
-        <div><b>HACCP 인증</b>식육가공 · 포장처리</div>
-        <div><b>일 최대 생산능력 3톤</b>가공 · 수비드 · OEM</div>
-        <div><b>납품 매장 100곳+</b>프랜차이즈 · 외식 매장</div>
-        <div><b>특허 기술이전</b>농촌진흥청 · 전북대학교</div>
+        <p class="sub"><b>육류 식품제조 전문기업</b></p>
       </div>
     </div>
   </section>
@@ -315,6 +309,19 @@
       el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
         el.style.setProperty('--rx',((.5-y)*6).toFixed(2)+'deg');el.style.setProperty('--ry',((x-.5)*8).toFixed(2)+'deg');el.style.setProperty('--gx',(x*100).toFixed(1)+'%');el.style.setProperty('--gy',(y*100).toFixed(1)+'%');});
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
+
+  /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
+  (function(){var h=document.querySelector('.hero h1');if(!h)return;h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());
+    var n=0;[].slice.call(h.querySelectorAll('.ln > span')).forEach(function(sp){var t=sp.textContent;sp.textContent='';sp.setAttribute('aria-hidden','true');
+      t.split('').forEach(function(c){var i=document.createElement('i');i.className='ch';i.style.setProperty('--i',n++);i.textContent=c===' '?'\u00a0':c;sp.appendChild(i);});});
+    h.classList.add('h3d');
+    if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var hero=document.querySelector('.hero'),tx=0,ty=0,cx=0,cy=0,run=false;
+      function step(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;h.style.setProperty('--ry',(cx*9).toFixed(2)+'deg');h.style.setProperty('--rx',(-cy*7).toFixed(2)+'deg');h.style.setProperty('--sx',(-cx*1.6).toFixed(2)+'px');h.style.setProperty('--sy',(1+cy*1.2).toFixed(2)+'px');
+        if(Math.abs(tx-cx)+Math.abs(ty-cy)>.002)requestAnimationFrame(step);else run=false;}
+      hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2;if(!run){run=true;requestAnimationFrame(step);}});
+      hero.addEventListener('pointerleave',function(){tx=0;ty=0;if(!run){run=true;requestAnimationFrame(step);}});}
+  })();
 
   /* 연혁·뉴스 접기 */
   [].slice.call(document.querySelectorAll('.more-btn')).forEach(function(b){var t=document.querySelector(b.getAttribute('data-more')),o=b.textContent;

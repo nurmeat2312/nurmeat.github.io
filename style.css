@@ -1011,3 +1011,21 @@ h1,h2,h3,.statement{text-wrap:balance}
 /* v16: 연혁·뉴스는 접지 않고 전부 보여준다 */
 .years .year li,.years:not(.all) .year li:not(.hl){display:grid}
 .news-list .news-item,.news-list:not(.all) .news-item:nth-child(n+4),.news-list:not(.all) .news-item:nth-child(n+5){display:grid}
+
+/* v17: 첫 화면 제목 입체 효과 */
+.hero .copy{perspective:1100px}
+.hero h1.h3d{transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-origin:30% 60%;will-change:transform;
+  text-shadow:calc(var(--sx,0px) * 1) calc(var(--sy,1px) * 1) 0 #dfe8ec,calc(var(--sx,0px) * 2) calc(var(--sy,1px) * 2) 0 #c9d6dc,calc(var(--sx,0px) * 3) calc(var(--sy,1px) * 3) 0 #b2c3cb,calc(var(--sx,0px) * 4) calc(var(--sy,1px) * 4) 0 #9bb0ba,calc(var(--sx,0px) * 5) calc(var(--sy,1px) * 5) 0 #869da8,calc(var(--sx,0px) * 6) calc(var(--sy,1px) * 6) 0 #718a96,calc(var(--sx,0px) * 10) calc(var(--sy,1px) * 14) 26px rgba(0,0,0,.5)}
+.hero h1.h3d .ln{overflow:visible}
+.hero h1.h3d .ln span,.js .hero h1.h3d .ln span{-webkit-mask-image:none;mask-image:none;animation:none;transform-style:preserve-3d;padding-right:0}
+.hero h1.h3d .ch{display:inline-block;font-style:normal;transform-origin:50% 100%;backface-visibility:hidden;animation:chUp .7s cubic-bezier(.2,.75,.2,1) calc(var(--i) * 34ms + 80ms) both}
+@keyframes chUp{from{opacity:0;transform:translateY(.45em) rotateX(-88deg) translateZ(-30px)}60%{opacity:1}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hero h1.h3d{transform:none}.hero h1.h3d .ch{animation:none}}
+
+/* v18: 첫 화면 정리, 로고 구좌와 회사소개 배경을 잇는다 */
+.hero .sub b{margin-bottom:0}
+.hero .copy{padding-bottom:clamp(40px,7vh,90px)}
+.l3{background:linear-gradient(180deg,#F4F9FB,#DCEBF2 60%,#fff)}
+.l3::after{content:"";position:absolute;left:0;right:0;bottom:0;height:min(38%,300px);background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none;z-index:1}
+.l3-tx{z-index:2}
+#company{padding-top:clamp(40px,5vw,80px)}
