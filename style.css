@@ -993,3 +993,10 @@ h1,h2,h3,.statement{text-wrap:balance}
   .years:not(.all) .year{padding-top:14px;padding-bottom:14px}
 }
 @media (prefers-reduced-motion:reduce){.js .hx.rv{filter:none}.np2-ph img{transform:none}}
+
+/* v14: 구좌 제목은 영문 큰 글씨 + 한글 라벨 (기업 사이트 표기) */
+.hx.en{font-family:"Archivo","Pretendard Variable",sans-serif;font-weight:600;letter-spacing:-.04em;line-height:1;font-size:clamp(40px,4.6vw,76px)}
+.hx.en.big{font-size:clamp(52px,8vw,132px);letter-spacing:-.05em}
+.w2 .lab{font-family:"Pretendard Variable",Pretendard,sans-serif;font-size:15px;letter-spacing:0;font-weight:700}
+.pat h3{font-family:inherit;font-weight:800;line-height:1.3}
+.bp h3{margin-bottom:12px}
