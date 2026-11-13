@@ -1207,3 +1207,4 @@ body:not(.vb) #quality{padding-top:var(--pt)}
   .fac figure{margin-bottom:12px}
   .rows li{padding:16px 0}
 }
+@media (max-width:640px){.m-hide{display:none}}
