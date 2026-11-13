@@ -1084,3 +1084,37 @@ h1,h2,h3,.statement{text-wrap:balance}
   .fac p{font-size:15px}
 }
 @media (max-width:860px){.np2{grid-template-columns:1fr;gap:28px}}
+
+/* v23: 구좌 전환 다시 (파란 띠 제거). 기본 = 밝은 바탕으로 쭉 잇기, body.vb = 검정 구좌 유지 + 깨끗한 경계 */
+:root{--tz:clamp(120px,15vw,220px);--pale:#E6F1F7}
+#technology,#quality,#brand,#history,#news,#contact{padding-top:var(--pt)}
+#business{background:linear-gradient(180deg,#fff,var(--soft)) top/100% var(--tz) no-repeat,var(--soft)}
+#brand{padding-top:calc(var(--pt) + var(--tz)*.3);background:linear-gradient(180deg,#fff 0,#DCEBF2 45%,var(--sky) 100%) top/100% var(--tz) no-repeat,var(--sky)}
+#contact{background:#0A0B0C}
+/* B안: 검정 구좌는 그대로, 경계는 띠 없이 깨끗하게 */
+body.vb #technology{background:var(--dark-2)}
+body.vb #quality,body.vb #news{background:#fff}
+body.vb #history{background:var(--dark)}
+/* A안(기본): 생산시설과 연혁도 밝은 바탕. 색은 옅은 하늘빛과 흰색 사이에서만 움직인다 */
+body:not(.vb) #technology{background:linear-gradient(180deg,var(--soft),var(--pale)) top/100% var(--tz) no-repeat,var(--pale);color:var(--ink)}
+body:not(.vb) #quality{padding-top:calc(var(--pt) + var(--tz)*.3);background:linear-gradient(180deg,var(--pale),#fff) top/100% var(--tz) no-repeat,#fff}
+body:not(.vb) #history{padding-top:calc(var(--pt) + var(--tz)*.4);background:linear-gradient(180deg,var(--sky) 0,#DCEBF2 55%,var(--soft) 100%) top/100% var(--tz) no-repeat,var(--soft);color:var(--ink)}
+body:not(.vb) #news{background:linear-gradient(180deg,var(--soft),#fff) top/100% var(--tz) no-repeat,#fff}
+body:not(.vb) #technology .lab,body:not(.vb) #history .lab{color:var(--deep)}
+body:not(.vb) #technology .hx,body:not(.vb) #history .hx{color:var(--ink)}
+body:not(.vb) #technology .chain::before{background:rgba(17,16,16,.16)}
+body:not(.vb) #technology .chain.fx .node:not(.lit) .ic{background:#fff;color:rgba(17,16,16,.4);box-shadow:inset 0 0 0 1px rgba(17,16,16,.18)}
+body:not(.vb) #technology .chain.fx .node.lit .ic{background:var(--deep);color:#fff}
+body:not(.vb) #technology .node h3,body:not(.vb) .fac h3,body:not(.vb) .pat h3,body:not(.vb) .pat dd{color:var(--ink)}
+body:not(.vb) #technology .node p,body:not(.vb) .fac p,body:not(.vb) .pat p:not(.lab),body:not(.vb) .pat dd small{color:var(--ink-2)}
+body:not(.vb) .fac .no,body:not(.vb) .pat dt{color:var(--deep)}
+body:not(.vb) .fac figure{background:#dfe7eb}
+body:not(.vb) .pat,body:not(.vb) .pat dl div{border-color:rgba(17,16,16,.14)}
+body:not(.vb) #history .year{border-color:rgba(17,16,16,.12)}
+body:not(.vb) #history .year .y{color:rgba(17,16,16,.28)}
+body:not(.vb) #history .year.now .y{color:var(--ink)}
+body:not(.vb) #history .year li{color:var(--ink-2)}
+body:not(.vb) #history .year li.hl{color:var(--ink)}
+body:not(.vb) #history .year li span{color:var(--deep)}
+body:not(.vb) #history .year li small{color:var(--mute)}
+body:not(.vb) #history .fx-bub{display:none}
