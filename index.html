@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14h5">
+<link rel="stylesheet" href="./style.css?v=2026.11.14h6">
 </head>
 <body>
 <!--BODY-->
@@ -60,7 +60,7 @@
       <div class="copy">
         <p class="kicker">NURMEAT Co., Ltd.</p>
         <h1><span class="ln"><span>Meat Meets</span></span><span class="ln"><span>Wellness.</span></span></h1>
-        <p class="sub"><b>육류 식품제조 전문기업</b></p>
+        <p class="sub"><b>육류 식품제조 전문기업 ㈜널미트</b></p>
       </div>
     </div>
   </section>
@@ -317,7 +317,7 @@
     h.classList.add('h3d');
     if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       var hero=document.querySelector('.hero'),tx=0,ty=0,cx=0,cy=0,run=false;
-      function step(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;h.style.setProperty('--ry',(cx*9).toFixed(2)+'deg');h.style.setProperty('--rx',(-cy*7).toFixed(2)+'deg');h.style.setProperty('--sx',(-cx*1.6).toFixed(2)+'px');h.style.setProperty('--sy',(1+cy*1.2).toFixed(2)+'px');
+      function step(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;h.style.setProperty('--ry',(cx*9).toFixed(2)+'deg');h.style.setProperty('--rx',(-cy*7).toFixed(2)+'deg');h.style.setProperty('--sx',(-cx*1.6).toFixed(2)+'px');h.style.setProperty('--sy',(1+cy*1.2).toFixed(2)+'px');h.style.setProperty('--gp',(50+cx*40).toFixed(1)+'%');
         if(Math.abs(tx-cx)+Math.abs(ty-cy)>.002)requestAnimationFrame(step);else run=false;}
       hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2;if(!run){run=true;requestAnimationFrame(step);}});
       hero.addEventListener('pointerleave',function(){tx=0;ty=0;if(!run){run=true;requestAnimationFrame(step);}});}
