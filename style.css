@@ -1147,3 +1147,27 @@ body:not(.vb) #quality{padding-top:var(--pt)}
   #history .year li.hl{font-size:16px}
   .ft-nav{gap:10px 16px;font-size:13px}
 }
+
+/* v27: 모바일 글자 크기 한 단계씩 낮춤 */
+@media (max-width:640px){
+  .hero h1.h3d{font-size:40px}
+  .hero .sub{font-size:15px}
+  .l3-h{font-size:28px}
+  .hx{font-size:28px}
+  .hx.en{font-size:32px}
+  .hx.en.big,#brand .hx.en.big{font-size:36px}
+  .w2 .lab{font-size:13px;margin-bottom:16px}
+  .w2 .body,.co2 .body{font-size:15.5px;line-height:1.75}
+  .co2 blockquote p{font-size:17px}
+  .bp h3,.fac h3,.pat h3{font-size:19px}
+  .bp .no{font-size:24px}
+  .fac p,.pat p:not(.lab),.bp p{font-size:15px;line-height:1.7}
+  .bp .tags{font-size:13px}
+  #technology .node h3{font-size:15px}
+  .pat dd{font-size:15px}
+  #history .year .y{font-size:32px}
+  #history .year li{font-size:14.5px}
+  #history .year li.hl{font-size:15.5px}
+  .ct2 .c-big{font-size:22px}
+}
+@media (max-width:640px){.rows b{font-size:17px}.rows span{font-size:14px}.rows i{font-size:13px}.news-item .t{font-size:15px}.ct2 .body{font-size:15px}}
