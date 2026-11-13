@@ -1199,3 +1199,11 @@ body:not(.vb) #quality{padding-top:var(--pt)}
   .news-item .t{font-size:14.5px}
   .ct2 .c-big{font-size:20px}
 }
+
+/* v29: 모바일은 부가 설명을 덜어 글자 양을 줄인다 */
+@media (max-width:640px){
+  .bp .tags,.rows i,.fac p,.pat p:not(.lab),#history .year li small,#technology .node p{display:none}
+  .fac{gap:28px}
+  .fac figure{margin-bottom:12px}
+  .rows li{padding:16px 0}
+}
