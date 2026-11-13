@@ -1133,3 +1133,9 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 .co2 .body{font-size:17px;line-height:1.8}
 .bp figure img[src*="line-4"]{filter:brightness(1.14)}
 @media (max-width:860px){.np2-ph .b,.np2-ph .c{border-radius:18px}.co2{grid-template-columns:1fr}}
+
+/* v25: 연혁은 연도를 위에 두고 내용을 넓게 써서 줄바꿈을 없앤다 */
+#history .year{grid-template-columns:1fr;gap:20px;padding:40px 0}
+#history .year li{grid-template-columns:44px 1fr;gap:14px}
+#history .year li.hl{font-size:19px}
+@media (max-width:860px){#history .year{gap:14px;padding:28px 0}#history .year li.hl{font-size:17px}}
