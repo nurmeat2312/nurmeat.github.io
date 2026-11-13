@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="./assets/font/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/font/Archivo-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./style.css?v=2026.11.12j">
+<link rel="stylesheet" href="./style.css?v=2026.11.14a">
 </head>
 <body>
 <!--BODY-->
@@ -65,6 +65,15 @@
         <div><b>납품 매장 100곳+</b>프랜차이즈 · 외식 매장</div>
         <div><b>특허 기술이전</b>농촌진흥청 · 전북대학교</div>
       </div>
+    </div>
+  </section>
+
+  <!-- LOGO 3D -->
+  <section class="l3" id="l3" aria-label="널미트 슬로건">
+    <canvas id="l3c" aria-hidden="true"></canvas>
+    <div class="l3-tx">
+      <p class="l3-k">MEAT MEETS WELLNESS</p>
+      <h2 class="l3-h">건강과 고기가<br>만나는 지점.</h2>
     </div>
   </section>
 
@@ -400,6 +409,65 @@
     });
   }
 })();
+</script>
+<script src="./assets/js/three.min.js" defer></script>
+<script>
+/* 로고 3D: 화면에 보일 때만 그린다 */
+window.addEventListener('DOMContentLoaded',function(){
+  var sec=document.getElementById('l3'),cv=document.getElementById('l3c');
+  if(!sec||!window.THREE)return;
+  var T=THREE,R;try{R=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:false,powerPreference:'high-performance'});}catch(e){return;}
+  sec.classList.add('on');
+  var mob=window.matchMedia('(max-width:860px)'),reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  R.outputEncoding=T.sRGBEncoding;
+  var scene=new T.Scene(),cam=new T.PerspectiveCamera(30,1,.1,100);cam.position.set(0,0,10);
+  var env=new T.Scene(),eg=new T.SphereGeometry(20,32,16),ec=[],ep=eg.attributes.position;
+  for(var i=0;i<ep.count;i++){var k=Math.min(1,Math.max(0,ep.getY(i)/40+.5)),c=k>.55?new T.Color().lerpColors(new T.Color(0x9DBFD0),new T.Color(0xFFFFFF),(k-.55)/.45):new T.Color().lerpColors(new T.Color(0x2F4B5A),new T.Color(0x9DBFD0),k/.55);ec.push(c.r,c.g,c.b);}
+  eg.setAttribute('color',new T.Float32BufferAttribute(ec,3));env.add(new T.Mesh(eg,new T.MeshBasicMaterial({vertexColors:true,side:T.BackSide})));
+  [[-6,7,4,5,3,0xffffff],[7,5,3,3,6,0xffffff],[0,9,-2,8,2,0xffffff],[9,0,2,2,9,0x1c2f3a],[-9,1,-3,2,8,0x1c2f3a]].forEach(function(p){var m=new T.Mesh(new T.PlaneGeometry(p[3],p[4]),new T.MeshBasicMaterial({color:p[5],side:T.DoubleSide}));m.position.set(p[0],p[1],p[2]);m.lookAt(0,0,0);env.add(m);});
+  scene.environment=new T.PMREMGenerator(R).fromScene(env,.03).texture;
+  var bgU={t:{value:0},a:{value:1}};
+  var bg=new T.Mesh(new T.PlaneGeometry(2,2),new T.ShaderMaterial({uniforms:bgU,depthWrite:false,depthTest:false,
+    vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=vec4(position.xy,1.,1.);}',
+    fragmentShader:'precision highp float;varying vec2 v;uniform float t;uniform float a;float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}float fbm(vec2 p){float s=0.,k=.5;for(int i=0;i<4;i++){s+=k*n(p);p=p*2.03+7.;k*=.5;}return s;}void main(){vec2 p=vec2(v.x*a,v.y)*2.2;float q=fbm(p+vec2(t*.05,-t*.03));float r=fbm(p*1.6+q*1.6+vec2(-t*.04,t*.06));vec3 c=mix(vec3(.80,.90,.945),vec3(.985,.995,1.),smoothstep(.25,.85,r));c=mix(c,vec3(.70,.84,.91),smoothstep(.55,.0,r)*.35);float l=pow(smoothstep(.62,.9,fbm(p*2.4-q+t*.07)),2.)*.25;gl_FragColor=vec4(c+l,1.);}'}));
+  bg.frustumCulled=false;bg.renderOrder=-10;scene.add(bg);
+  scene.add(new T.HemisphereLight(0xffffff,0xc9dbe3,.5));var key=new T.DirectionalLight(0xffffff,.62);key.position.set(-3,5,6);scene.add(key);
+  /* 로고: 윗면 윤곽을 따서 두께를 준 스테이크 모양 */
+  var P=[0.9899,0.8095,0.9809,0.8413,0.9787,0.8452,0.9765,0.8532,0.9731,0.8591,0.9731,0.8611,0.9675,0.871,0.9675,0.873,0.9484,0.9028,0.9473,0.9028,0.9383,0.9147,0.935,0.9167,0.9327,0.9206,0.9271,0.9246,0.9249,0.9286,0.9182,0.9345,0.9159,0.9345,0.9081,0.9425,0.9058,0.9425,0.9025,0.9464,0.9002,0.9464,0.8969,0.9504,0.8946,0.9504,0.8935,0.9524,0.8913,0.9524,0.8901,0.9544,0.8845,0.9563,0.8812,0.9603,0.8789,0.9603,0.8778,0.9623,0.8756,0.9623,0.8711,0.9663,0.8677,0.9663,0.8666,0.9683,0.8643,0.9683,0.8632,0.9702,0.861,0.9702,0.8565,0.9742,0.8531,0.9742,0.8487,0.9782,0.8453,0.9782,0.8442,0.9802,0.8408,0.9802,0.8397,0.9821,0.8363,0.9821,0.8352,0.9841,0.8318,0.9841,0.8307,0.9861,0.8274,0.9861,0.8262,0.9881,0.8161,0.9901,0.815,0.9921,0.8094,0.9921,0.8083,0.994,0.8016,0.994,0.8004,0.996,0.7926,0.996,0.7915,0.998,0.778,0.998,0.7769,1.0,0.7534,1.0,0.7522,0.998,0.7399,0.998,0.7388,0.996,0.7321,0.996,0.7309,0.994,0.7253,0.994,0.7242,0.9921,0.7209,0.9921,0.7197,0.9901,0.7152,0.9901,0.7141,0.9881,0.7108,0.9881,0.7096,0.9861,0.7074,0.9861,0.7029,0.9821,0.6996,0.9821,0.6984,0.9802,0.6928,0.9782,0.6895,0.9742,0.6839,0.9722,0.6805,0.9683,0.6783,0.9683,0.6749,0.9643,0.6726,0.9643,0.6693,0.9603,0.667,0.9603,0.6592,0.9524,0.657,0.9524,0.6513,0.9464,0.6491,0.9464,0.6413,0.9385,0.639,0.9385,0.6233,0.9246,0.6211,0.9246,0.6177,0.9206,0.6155,0.9206,0.6065,0.9127,0.6043,0.9127,0.6031,0.9107,0.6009,0.9107,0.5998,0.9087,0.5975,0.9087,0.5964,0.9067,0.5942,0.9067,0.593,0.9048,0.5908,0.9048,0.5897,0.9028,0.5874,0.9028,0.583,0.8988,0.5796,0.8988,0.5751,0.8948,0.5717,0.8948,0.5706,0.8929,0.5673,0.8929,0.5661,0.8909,0.5628,0.8909,0.5617,0.8889,0.5516,0.8869,0.5504,0.8849,0.5448,0.8849,0.5437,0.8829,0.537,0.8829,0.5359,0.881,0.5291,0.881,0.528,0.879,0.5191,0.879,0.5179,0.877,0.5034,0.877,0.5022,0.875,0.4439,0.875,0.4428,0.877,0.4249,0.877,0.4238,0.879,0.4103,0.879,0.4092,0.881,0.3969,0.881,0.3957,0.8829,0.3845,0.8829,0.3834,0.8849,0.3722,0.8849,0.3711,0.8869,0.3599,0.8869,0.3587,0.8889,0.3487,0.8889,0.3475,0.8909,0.3352,0.8909,0.3341,0.8929,0.3217,0.8929,0.3206,0.8948,0.3072,0.8948,0.3061,0.8968,0.2859,0.8968,0.2848,0.8988,0.2332,0.8988,0.2321,0.8968,0.2186,0.8968,0.2175,0.8948,0.2085,0.8948,0.2074,0.8929,0.2018,0.8929,0.2007,0.8909,0.1951,0.8909,0.1939,0.8889,0.1895,0.8889,0.1883,0.8869,0.1839,0.8869,0.1827,0.8849,0.1794,0.8849,0.1749,0.881,0.1715,0.881,0.1704,0.879,0.1682,0.879,0.167,0.877,0.1648,0.877,0.1637,0.875,0.1581,0.873,0.1547,0.869,0.1525,0.869,0.1469,0.8631,0.1446,0.8631,0.1357,0.8552,0.1334,0.8512,0.1278,0.8472,0.1256,0.8433,0.1244,0.8433,0.1222,0.8393,0.1211,0.8393,0.1188,0.8353,0.1143,0.8313,0.1054,0.8175,0.1043,0.8175,0.0975,0.8056,0.0964,0.8056,0.0785,0.7738,0.0785,0.7718,0.0717,0.7599,0.0717,0.7579,0.0673,0.75,0.0673,0.748,0.0628,0.7401,0.0628,0.7381,0.0594,0.7321,0.0572,0.7242,0.0538,0.7183,0.0538,0.7163,0.0471,0.7004,0.046,0.6944,0.0415,0.6845,0.0392,0.6746,0.037,0.6706,0.0336,0.6567,0.0314,0.6528,0.0224,0.621,0.0224,0.6171,0.0202,0.6111,0.0202,0.6071,0.0157,0.5913,0.0157,0.5873,0.0146,0.5853,0.0146,0.5813,0.0135,0.5794,0.0135,0.5754,0.0123,0.5734,0.0123,0.5694,0.0112,0.5675,0.0112,0.5635,0.0101,0.5615,0.0101,0.5575,0.0078,0.5496,0.0078,0.5437,0.0067,0.5417,0.0067,0.5357,0.0056,0.5337,0.0056,0.5278,0.0045,0.5258,0.0045,0.5198,0.0034,0.5179,0.0034,0.5079,0.0022,0.506,0.0022,0.496,0.0011,0.494,0.0011,0.4782,0.0,0.4762,0.0,0.4107,0.0011,0.4087,0.0011,0.3929,0.0022,0.3909,0.0022,0.379,0.0034,0.377,0.0045,0.3591,0.0034,0.3571,0.0,0.3571,0.0045,0.3571,0.0056,0.3552,0.0067,0.3413,0.009,0.3333,0.009,0.3274,0.0101,0.3254,0.0101,0.3214,0.0112,0.3194,0.0112,0.3155,0.0123,0.3135,0.0135,0.3036,0.0157,0.2976,0.0157,0.2937,0.0179,0.2877,0.0179,0.2837,0.0213,0.2738,0.0213,0.2698,0.028,0.246,0.0303,0.2421,0.0325,0.2321,0.0348,0.2282,0.0359,0.2222,0.0381,0.2183,0.0381,0.2163,0.0404,0.2123,0.0404,0.2103,0.0426,0.2063,0.0426,0.2044,0.0448,0.2004,0.0471,0.1925,0.0549,0.1766,0.0549,0.1746,0.0605,0.1647,0.0605,0.1627,0.0852,0.119,0.0863,0.119,0.0919,0.1091,0.093,0.1091,0.0975,0.1012,0.0987,0.1012,0.1065,0.0893,0.1076,0.0893,0.1132,0.0813,0.1166,0.0794,0.1222,0.0714,0.1323,0.0635,0.1345,0.0595,0.1368,0.0575,0.139,0.0575,0.1491,0.0476,0.1513,0.0476,0.1603,0.0397,0.1659,0.0377,0.1693,0.0337,0.1715,0.0337,0.176,0.0298,0.1794,0.0298,0.1839,0.0258,0.1872,0.0258,0.1917,0.0218,0.1951,0.0218,0.1962,0.0198,0.1996,0.0198,0.2007,0.0179,0.2052,0.0179,0.2063,0.0159,0.2108,0.0159,0.2119,0.0139,0.2164,0.0139,0.2175,0.0119,0.2231,0.0119,0.2242,0.0099,0.2309,0.0099,0.2321,0.0079,0.2399,0.0079,0.241,0.006,0.2522,0.006,0.2534,0.004,0.2747,0.004,0.2758,0.002,0.2937,0.002,0.2948,0.004,0.3184,0.004,0.3195,0.006,0.3318,0.006,0.333,0.0079,0.3419,0.0079,0.343,0.0099,0.3509,0.0099,0.352,0.0119,0.3599,0.0119,0.361,0.0139,0.3666,0.0139,0.3677,0.0159,0.3744,0.0159,0.3756,0.0179,0.38,0.0179,0.3812,0.0198,0.3868,0.0198,0.3879,0.0218,0.3924,0.0218,0.3935,0.0238,0.398,0.0238,0.3991,0.0258,0.4036,0.0258,0.4047,0.0278,0.4148,0.0298,0.4159,0.0317,0.4193,0.0317,0.4204,0.0337,0.4238,0.0337,0.4249,0.0357,0.4294,0.0357,0.4305,0.0377,0.4339,0.0377,0.435,0.0397,0.4383,0.0397,0.4395,0.0417,0.4473,0.0437,0.4518,0.0476,0.4596,0.0496,0.4641,0.0536,0.4675,0.0536,0.4686,0.0556,0.472,0.0556,0.4731,0.0575,0.4753,0.0575,0.4798,0.0615,0.4832,0.0615,0.4843,0.0635,0.4865,0.0635,0.491,0.0675,0.4944,0.0675,0.4955,0.0694,0.4978,0.0694,0.4989,0.0714,0.5011,0.0714,0.5022,0.0734,0.5045,0.0734,0.5056,0.0754,0.5078,0.0754,0.509,0.0774,0.5112,0.0774,0.5123,0.0794,0.5146,0.0794,0.5157,0.0813,0.5179,0.0813,0.5191,0.0833,0.5213,0.0833,0.5224,0.0853,0.5247,0.0853,0.5258,0.0873,0.528,0.0873,0.5291,0.0893,0.5348,0.0913,0.5381,0.0952,0.5404,0.0952,0.5415,0.0972,0.5471,0.0992,0.5504,0.1032,0.5561,0.1052,0.5594,0.1091,0.5617,0.1091,0.565,0.1131,0.5673,0.1131,0.5706,0.1171,0.5729,0.1171,0.5762,0.121,0.5785,0.121,0.5818,0.125,0.5841,0.125,0.5874,0.129,0.5897,0.129,0.5953,0.1349,0.5975,0.1349,0.6155,0.1508,0.6177,0.1508,0.6278,0.1607,0.63,0.1607,0.6794,0.2044,0.6816,0.2083,0.6939,0.2183,0.6962,0.2222,0.704,0.2282,0.7063,0.2321,0.7119,0.2361,0.7141,0.2401,0.7175,0.2421,0.7197,0.246,0.7253,0.25,0.7276,0.254,0.7365,0.2619,0.7422,0.2698,0.7511,0.2778,0.7635,0.2937,0.7668,0.2956,0.7691,0.2996,0.7702,0.2996,0.7724,0.3036,0.7735,0.3036,0.7758,0.3075,0.7769,0.3075,0.7791,0.3115,0.7803,0.3115,0.7825,0.3155,0.7836,0.3155,0.7859,0.3194,0.7904,0.3234,0.7937,0.3294,0.7948,0.3294,0.7971,0.3333,0.8016,0.3373,0.8049,0.3433,0.8094,0.3472,0.8128,0.3532,0.8173,0.3571,0.8206,0.3631,0.8217,0.3631,0.8251,0.369,0.8262,0.369,0.8296,0.375,0.8307,0.375,0.8341,0.381,0.8352,0.381,0.8386,0.3869,0.8397,0.3869,0.8442,0.3948,0.8453,0.3948,0.8487,0.4008,0.8498,0.4008,0.8543,0.4087,0.8554,0.4087,0.8599,0.4167,0.861,0.4167,0.8655,0.4246,0.8666,0.4246,0.8711,0.4325,0.8722,0.4325,0.8778,0.4425,0.8789,0.4425,0.8857,0.4544,0.8868,0.4544,0.8935,0.4663,0.8946,0.4663,0.9013,0.4782,0.9025,0.4782,0.9126,0.496,0.9137,0.496,0.926,0.5179,0.9271,0.5179,0.9496,0.5595,0.9496,0.5615,0.9552,0.5714,0.9552,0.5734,0.9585,0.5794,0.9585,0.5813,0.9619,0.5873,0.9619,0.5893,0.9652,0.5952,0.9652,0.5972,0.972,0.6131,0.9877,0.6687,0.9877,0.6726,0.9888,0.6746,0.9888,0.6786,0.991,0.6865,0.991,0.6925,0.9922,0.6944,0.9933,0.7083,0.9944,0.7103,0.9944,0.7202,0.9955,0.7222,0.9955,0.7341,0.9966,0.7361,0.9989,0.7361,0.9966,0.7361,0.9955,0.7381,0.9955,0.754,0.9966,0.756,0.9955,0.7579,0.9955,0.7639,0.9944,0.7659,0.9944,0.7798,0.9933,0.7817,0.9933,0.7897,0.9922,0.7917,0.9922,0.7976,0.991,0.7996],AS=0.565,W=3.7,H=W*AS,sh=new T.Shape();
+  for(var j=0;j<P.length;j+=2){var X=(P[j]-.5)*W,Y=(P[j+1]-.5)*H;j?sh.lineTo(X,Y):sh.moveTo(X,Y);}
+  var D=.5,geo=new T.ExtrudeGeometry(sh,{depth:D,bevelEnabled:true,bevelThickness:.06,bevelSize:.05,bevelSegments:4,curveSegments:4});
+  geo.translate(0,0,-D);
+  var uv=geo.attributes.uv;for(var u=0;u<uv.count;u++)uv.setXY(u,uv.getX(u)/W+.5,uv.getY(u)/H+.5);
+  var tex=new T.TextureLoader().load('./assets/img/logo-top.jpg',function(){draw(0);});tex.encoding=T.sRGBEncoding;tex.anisotropy=8;
+  var top=new T.MeshPhysicalMaterial({map:tex,roughness:.5,clearcoat:.35,clearcoatRoughness:.25,envMapIntensity:.28});
+  var side=new T.MeshPhysicalMaterial({color:0x74191A,roughness:.5,clearcoat:.35,clearcoatRoughness:.3,envMapIntensity:.3});
+  var logo=new T.Group();logo.add(new T.Mesh(geo,[top,side]));
+  var back=new T.Mesh(new T.ShapeGeometry(sh),side);back.rotation.y=Math.PI;back.scale.x=-1;back.position.z=-D-.065;back.material.side=T.DoubleSide;logo.add(back);
+  scene.add(logo);
+  var dropMat=new T.MeshPhysicalMaterial({transmission:1,thickness:2.4,roughness:0,ior:1.45,envMapIntensity:.35,attenuationColor:new T.Color(0xc4e2f0),attenuationDistance:6});
+  var rimMat=new T.ShaderMaterial({transparent:true,depthWrite:false,
+    vertexShader:'varying vec3 n;varying vec3 v;void main(){vec4 p=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-p.xyz);gl_Position=projectionMatrix*p;}',
+    fragmentShader:'precision highp float;varying vec3 n;varying vec3 v;void main(){vec3 N=normalize(n),V=normalize(v);float d=max(dot(N,V),0.);float f=pow(1.-d,2.6);vec3 R=reflect(-V,N);vec3 L=normalize(vec3(-.55,.75,.45));float s1=pow(max(dot(R,L),0.),90.)*1.4;float s2=smoothstep(.80,.93,dot(R,normalize(vec3(.6,.5,.62))))*.5;float under=pow(max(dot(N,normalize(vec3(.35,-.8,.5))),0.),5.)*.55*(1.-f);float ring=smoothstep(.55,.98,f);vec3 c=mix(vec3(.62,.76,.83),vec3(.20,.33,.41),ring);float a=f*.62+ring*.22;c=mix(c,vec3(1.),clamp(s1+s2+under,0.,1.));a=clamp(a+s1+s2+under,0.,1.);gl_FragColor=vec4(c,a);}'});
+  var dg=new T.SphereGeometry(1,48,36),drops=[];
+  [[-3.9,1.5,.6,.36],[-2.9,-1.6,1.4,.22],[-1.5,2.3,-.6,.16],[3.5,1.8,.2,.3],[4.1,-.9,1.2,.42],[2.1,-2.2,.8,.2],[.5,2.5,1.6,.13],[-4.8,-.2,-.4,.26],[2.9,.3,2.2,.15],[-.8,-2.5,1.9,.17],[5,2.5,-1,.2]].forEach(function(s,i){var m=new T.Mesh(dg,dropMat),r=new T.Mesh(dg,rimMat);r.scale.setScalar(1.004);r.renderOrder=5;m.add(r);m.userData={x:s[0],y:s[1],z:s[2],r:s[3],ph:i*1.7,sp:.25+((i*37)%10)/40};scene.add(m);drops.push(m);});
+  var st={p:0,tp:0,mx:0,my:0,tx:0,ty:0},vis=false,raf=0,t0=performance.now();
+  function size(){var w=sec.clientWidth,h=sec.clientHeight;R.setPixelRatio(Math.min(window.devicePixelRatio||1,mob.matches?1.5:2));R.setSize(w,h,false);cam.aspect=w/h;cam.fov=w<h?46:30;cam.updateProjectionMatrix();bgU.a.value=w/h;drops.forEach(function(d,i){d.visible=!(mob.matches&&i>6);});}
+  function prog(){var r=sec.getBoundingClientRect(),vh=window.innerHeight;st.tp=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));}
+  function draw(now){var t=reduce?0:(now-t0)/1000;st.p=reduce?st.tp:st.p+(st.tp-st.p)*.08;st.mx+=(st.tx-st.mx)*.05;st.my+=(st.ty-st.my)*.05;
+    var q=st.p,m=mob.matches;
+    logo.position.set(m?0:2.5-q*.5,(m?1.15:0)+Math.sin(t*.8)*.07,0);
+    logo.rotation.set(-.95+q*1.15+Math.sin(t*.6)*.04+st.my*.1,-.9+q*1.5+Math.sin(t*.45)*.08+st.mx*.2,.12-q*.2);
+    logo.scale.setScalar(m?.62:1);
+    var sx=m?.42:1;
+    drops.forEach(function(d){var u=d.userData,w=1+Math.sin(t*1.3+u.ph)*.05;d.position.set(u.x*sx+Math.sin(t*u.sp+u.ph)*.22+st.mx*u.z*.18,u.y+Math.cos(t*u.sp*.8+u.ph)*.26+(q-.5)*-2.4*(.4+u.r)+(m?.6:0),u.z);d.scale.set(u.r*w,u.r*(2-w),u.r*w);});
+    cam.position.x=st.mx*.25;cam.position.y=-st.my*.15;cam.lookAt(0,0,0);bgU.t.value=t;R.render(scene,cam);}
+  function loop(now){draw(now);if(vis&&!reduce)raf=requestAnimationFrame(loop);}
+  window.addEventListener('resize',function(){size();if(!vis||reduce)draw(0);});
+  window.addEventListener('scroll',function(){prog();if(reduce&&vis)draw(0);},{passive:true});
+  sec.addEventListener('pointermove',function(e){var r=sec.getBoundingClientRect();st.tx=((e.clientX-r.left)/r.width-.5)*2;st.ty=((e.clientY-r.top)/r.height-.5)*2;},{passive:true});
+  new IntersectionObserver(function(en){vis=en[0].isIntersecting;cancelAnimationFrame(raf);if(vis){prog();if(reduce)draw(0);else raf=requestAnimationFrame(loop);}},{rootMargin:'120px'}).observe(sec);
+  size();prog();st.p=st.tp;draw(0);
+});
 </script>
 <!--/BODY-->
 </body>

@@ -712,3 +712,15 @@ h1,h2,h3,.statement{text-wrap:balance}
 @media (prefers-reduced-motion:reduce){
   .js .hero h1 .ln span,.hero h1 .ln span{animation:none;-webkit-mask-image:none;mask-image:none}
 }
+
+/* v9: 로고 3D 구좌 (첫 화면 바로 아래) */
+.l3{position:relative;height:min(92vh,860px);min-height:560px;overflow:hidden;background:linear-gradient(180deg,#F4F9FB,#DCEBF2);display:flex;align-items:center}
+.l3 canvas{position:absolute;inset:0;width:100%;height:100%;display:none}
+.l3.on canvas{display:block}
+.l3-tx{position:relative;z-index:2;width:100%;max-width:1440px;margin:0 auto;padding:0 var(--pad)}
+.l3-k{font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--red);margin:0 0 20px}
+.l3-h{font-size:clamp(34px,5vw,76px);font-weight:700;line-height:1.16;letter-spacing:-.045em;color:var(--ink);margin:0}
+@media (max-width:860px){
+  .l3{height:86vh;min-height:520px;align-items:flex-end}
+  .l3-tx{padding-bottom:56px}
+}
