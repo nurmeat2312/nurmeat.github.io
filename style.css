@@ -724,3 +724,97 @@ h1,h2,h3,.statement{text-wrap:balance}
   .l3{height:86vh;min-height:520px;align-items:flex-end}
   .l3-tx{padding-bottom:56px}
 }
+
+/* v11: 모바일 다이어트 (글자 줄이고 구좌를 짧게) */
+.more-btn{display:none}
+@media (max-width:860px){
+  .sec{padding-top:64px;padding-bottom:64px}
+  .head{margin-bottom:32px}
+  .head .lead,.orbit-wrap .lead,.orbit-note,.why-head p{display:none}
+  .hero .sub span{display:none}
+  .l3{height:64vh;min-height:440px}
+  /* 숫자: 한 줄 3칸 */
+  .figs{grid-template-columns:repeat(3,1fr)!important;gap:0}
+  .fig,.fig+.fig{padding:0 4px!important;margin:0!important;border:0!important}
+  .fig .n{font-size:38px}
+  .fig .n small{display:block;margin:4px 0 0;font-size:12px}
+  .fig h3{margin-top:10px;font-size:13.5px}
+  .fig p,#figures .creds{display:none}
+  /* 공정 6단계: 3칸 2줄, 설명 숨김 */
+  .chain{grid-template-columns:repeat(3,1fr)!important;row-gap:26px!important;margin-top:0}
+  .node{padding:0 4px}
+  .node .ic{width:54px!important;height:54px!important;margin-bottom:10px;font-size:17px}
+  .node h3{font-size:14.5px;margin:0}
+  .node p{display:none}
+  .feed-row{margin-top:40px}
+  .feed-row + .orbit-wrap{margin-top:56px}
+  .orbit-wrap .title{font-size:22px}
+  .orbit{display:grid!important;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px}
+  .orbit .hub{grid-column:1/-1;padding:18px 14px}
+  .orbit .sat,.orbit .sat.s1,.orbit .sat.s2,.orbit .sat.s3{padding:16px 6px;border-radius:14px}
+  .orbit .sat b{font-size:13.5px;line-height:1.35}
+  .orbit .sat span{display:none}
+  /* 생산시설: 옆으로 넘기는 카드 */
+  .zz{display:flex!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-right:calc(var(--pad) * -1);padding-right:var(--pad);max-width:none}
+  .zz-row{flex:0 0 78%;scroll-snap-align:start;display:block!important}
+  .zz-row img{border-radius:18px!important;order:0!important}
+  .zz-row>div{margin-top:14px}
+  .zz-row h3{font-size:12.5px}
+  .zz-row b{font-size:20px;margin:2px 0 8px}
+  .zz-row p{font-size:14px;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .tt.nimg{margin-top:40px;padding:24px 18px}
+  .tt.nimg .tt-l>p:not(.tt-k){display:none}
+  .tt.nimg h3{font-size:20px}
+  /* 인증: 2칸, 설명 숨김 */
+  .certs.c5{grid-template-columns:1fr 1fr!important;gap:8px}
+  .certs.c5 .cert,.certs.c5 .cert.main{grid-column:auto!important;padding:18px 14px 20px!important}
+  .certs.c5 .cert:last-child{grid-column:1/-1!important}
+  .cert svg{width:26px;height:26px;margin-bottom:10px}
+  .cert h3,.certs.c5 .cert.main h3{font-size:15.5px!important;line-height:1.35}
+  .cert .org{font-size:11.5px}
+  .cert p:not(.org){display:none}
+  /* 연혁·뉴스: 핵심만 먼저 */
+  .years:not(.all) .year li:not(.hl){display:none}
+  .years:not(.all) .year{padding-top:18px;padding-bottom:18px}
+  .year li small{display:none}
+  .news-list:not(.all) .news-item:nth-child(n+4){display:none}
+  .more-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin-top:20px;border-radius:999px;border:1px solid currentColor;background:none;color:inherit;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+  .contact .kinds{display:none}
+  .ct3{height:200px;margin:-40px 0 10px}
+  .contact{padding:72px 0}
+}
+
+/* v12: 구좌 정리 (13개 → 10개), 군더더기 문장 제거, 글씨 가독성 */
+.sec{padding:120px 0}
+.head{margin-bottom:56px}
+.head .lead{display:none}
+.biz .en,.zz-row h3{display:none}
+.co-txt .lead,.cert p,.news-item .t{color:var(--ink)}
+.sec.dark .year li,.sec.dark2 p,.zz-row p{color:rgba(255,255,255,.84)}
+/* 생산시설: 공정 6단계를 위에 얹고, 설비는 2열 */
+#technology .chain{margin:0 auto 96px;max-width:1120px}
+#technology .chain::before{background:repeating-linear-gradient(90deg,rgba(133,192,221,.7) 0 8px,transparent 8px 16px)}
+#technology .node .ic{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px var(--sky)}
+#technology .node.key .ic{background:var(--sky);color:#0A0B0C}
+#technology .node h3{color:#fff}
+#technology .node p{color:rgba(255,255,255,.7)}
+.zz{grid-template-columns:1fr 1fr;gap:56px 40px;max-width:1160px}
+.zz-row{display:block}
+.zz-row img,.zz-row:nth-child(even) img{order:0;border-radius:22px}
+.zz-row img:hover{border-radius:22px}
+.zz-row>div{margin-top:22px}
+.zz-row b{font-size:26px;margin:0 0 10px}
+.zz-row p{font-size:16.5px;line-height:1.75}
+.tt.nimg{margin-top:88px}
+/* 연혁·뉴스: 핵심만 먼저 */
+.years:not(.all) .year li:not(.hl){display:none}
+.news-list:not(.all) .news-item:nth-child(n+5){display:none}
+.more-btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:320px;min-height:52px;margin:36px auto 0;border-radius:999px;border:1px solid currentColor;background:none;color:inherit;font:inherit;font-size:15.5px;font-weight:700;cursor:pointer;transition:background-color .2s,color .2s}
+.more-btn:hover{background:var(--sky);border-color:var(--sky);color:#0A0B0C}
+@media (max-width:860px){
+  .sec{padding:64px 0}
+  .head{margin-bottom:30px}
+  #technology .chain{margin-bottom:44px}
+  .zz{gap:12px}
+  .more-btn{margin-top:22px;min-height:48px}
+}
