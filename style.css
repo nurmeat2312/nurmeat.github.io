@@ -724,3 +724,40 @@ h1,h2,h3,.statement{text-wrap:balance}
   .l3{height:86vh;min-height:520px;align-items:flex-end}
   .l3-tx{padding-bottom:56px}
 }
+
+/* v10: 구좌별 효과 */
+/* 숫자 구좌: 떠오르는 물방울 + 물에서 올라오는 숫자 */
+#figures{position:relative;overflow:hidden}
+#figures .wrap{position:relative;z-index:1}
+.fx-bub{position:absolute;inset:0;pointer-events:none}
+.fx-bub i{position:absolute;left:var(--x);bottom:-90px;width:var(--s);height:var(--s);border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.85) 0 6%,rgba(255,255,255,0) 14%),radial-gradient(circle at 66% 74%,rgba(133,192,221,.35),rgba(133,192,221,0) 46%),radial-gradient(circle,rgba(133,192,221,0) 56%,rgba(133,192,221,.34) 86%,rgba(190,225,240,.75) 97%,rgba(190,225,240,0) 100%);
+  opacity:0;animation:bubUp var(--t) linear var(--d) infinite}
+@keyframes bubUp{0%{transform:translate3d(0,0,0) scale(.7);opacity:0}8%{opacity:.75}50%{transform:translate3d(18px,-52vh,0) scale(1)}92%{opacity:.6}100%{transform:translate3d(-12px,-112vh,0) scale(1.08);opacity:0}}
+.fig .n span{display:inline-block}
+.js .fig.rv .n{opacity:0;filter:blur(14px);transform:translateY(46px) scale(.94);transition:opacity .9s ease,filter 1s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.js .fig.rv.on .n{opacity:1;filter:none;transform:none}
+.js .fig.rv.d1 .n{transition-delay:.15s}.js .fig.rv.d2 .n{transition-delay:.3s}
+/* 공정 6단계 */
+.chain.fx::after{content:"";position:absolute;left:8%;top:43px;height:4px;border-radius:4px;width:calc(84% * var(--p,0));background:linear-gradient(90deg,var(--sky),var(--red));box-shadow:0 0 18px rgba(133,192,221,.9)}
+.chain.fx .node .ic{position:relative;z-index:1;transition:transform .45s cubic-bezier(.2,.8,.2,1),background-color .35s,color .35s,box-shadow .35s}
+.chain.fx .node:not(.lit) .ic{background:var(--white);color:var(--mute);box-shadow:inset 0 0 0 2px rgba(17,16,16,.14)}
+.chain.fx .node.lit .ic{background:var(--sky);color:#0A0B0C;transform:scale(1.1);box-shadow:0 10px 26px rgba(31,127,176,.32)}
+.chain.fx .node h3,.chain.fx .node p{transition:opacity .4s}
+.chain.fx .node:not(.lit) h3,.chain.fx .node:not(.lit) p{opacity:.38}
+@media (max-width:1100px){.chain.fx::after{display:none}}
+/* 문의 구좌 로고 */
+.ct3{display:none;height:clamp(240px,42vh,400px);margin:-60px 0 30px}
+.ct3.on{display:block}
+.ct3 canvas{display:block;width:100%;height:100%}
+/* 제목: 흐릿하게 있다가 또렷해지며 등장 */
+.js .display.rv{filter:blur(12px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1),filter 1s ease}
+.js .display.rv.on{filter:none}
+/* 카드 기울임 */
+.tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;position:relative;will-change:transform}
+.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.34),rgba(255,255,255,0) 46%)}
+.tilt:hover::after{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  .fx-bub{display:none}
+  .js .fig.rv .n,.js .display.rv{filter:none;transform:none;opacity:1;transition:none}
+}
