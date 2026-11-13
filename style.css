@@ -1139,3 +1139,11 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 #history .year li{grid-template-columns:44px 1fr;gap:14px}
 #history .year li.hl{font-size:19px}
 @media (max-width:860px){#history .year{gap:14px;padding:28px 0}#history .year li.hl{font-size:17px}}
+
+/* v26: 모바일 연혁 줄바꿈 줄이기, 하단 메뉴 한 줄 */
+#history .year li>div{word-break:keep-all}
+@media (max-width:860px){
+  #history .year li{grid-template-columns:26px 1fr;gap:10px;font-size:15px}
+  #history .year li.hl{font-size:16px}
+  .ft-nav{gap:10px 16px;font-size:13px}
+}
