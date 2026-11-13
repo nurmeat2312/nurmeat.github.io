@@ -1171,3 +1171,31 @@ body:not(.vb) #quality{padding-top:var(--pt)}
   .ct2 .c-big{font-size:22px}
 }
 @media (max-width:640px){.rows b{font-size:17px}.rows span{font-size:14px}.rows i{font-size:13px}.news-item .t{font-size:15px}.ct2 .body{font-size:15px}}
+
+/* v28: 모바일 글자를 국내 대기업 모바일 사이트 수준(본문 14px대, 구좌 제목 30px대)으로 */
+@media (max-width:640px){
+  .hero h1.h3d{font-size:36px}
+  .hero .sub{font-size:14px}
+  .hero .kicker{font-size:11px}
+  .l3-h{font-size:25px}.l3-k{font-size:11px}
+  .hx{font-size:25px}
+  .hx.en{font-size:29px}
+  .hx.en.big,#brand .hx.en.big{font-size:32px}
+  .w2 .lab{font-size:12px;margin-bottom:14px}
+  .w2 .body,.co2 .body,.ct2 .body{font-size:14.5px;line-height:1.75}
+  .co2 blockquote p{font-size:16px}
+  .co2 blockquote footer b{font-size:15px}
+  .bp h3,.fac h3,.pat h3{font-size:17.5px}
+  .bp .no{font-size:21px}
+  .fac .no{font-size:15px}
+  .fac p,.pat p:not(.lab),.bp p{font-size:14.5px;line-height:1.7}
+  .bp .tags{font-size:12.5px}
+  #technology .node h3{font-size:14px}
+  .pat dt{font-size:12.5px}.pat dd{font-size:14.5px}
+  .rows b{font-size:16px}.rows span{font-size:13.5px}.rows i{font-size:12.5px}
+  #history .year .y{font-size:28px}
+  #history .year li{font-size:14px}
+  #history .year li.hl{font-size:15px}
+  .news-item .t{font-size:14.5px}
+  .ct2 .c-big{font-size:20px}
+}
