@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14m4">
+<link rel="stylesheet" href="./style.css?v=2026.11.14m5">
 </head>
 <body>
 <!--BODY-->
@@ -59,7 +59,7 @@
     <div class="wrap in">
       <div class="copy">
         <p class="kicker">NURMEAT Co., Ltd.</p>
-        <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true">MEAT</span><span class="ln" aria-hidden="true">ME<span class="flip"><i>A</i><i>E</i></span>T<span class="s">S</span></span><span class="ln w" aria-hidden="true"><i class="wc">W</i><i class="wc">E</i><i class="wc">L</i><i class="wc">L</i><i class="wc">N</i><i class="wc es">E</i><i class="wc es">S</i><i class="wc">S</i><i class="wc">.</i></span></h1>
+        <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true"><i class="g">M</i><i class="g">E</i><i class="g">A</i><i class="g">T</i></span><span class="ln" aria-hidden="true"><i class="g">M</i><i class="g">E</i><span class="flip"><i class="g">A</i><i class="g">E</i></span><i class="g">T</i><span class="s g">S</span></span><span class="ln w" aria-hidden="true"><i class="wc g">W</i><i class="wc g">E</i><i class="wc g">L</i><i class="wc g">L</i><i class="wc g">N</i><i class="wc g es">E</i><i class="wc g es">S</i><i class="wc g">S</i><i class="wc g">.</i></span></h1>
         <p class="sub"><b>육류 식품제조 전문기업 ㈜널미트</b></p>
       </div>
     </div>
@@ -306,7 +306,7 @@
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
 
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
-  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){var wcs=[].slice.call(h.querySelectorAll('.wc')),es=wcs.filter(function(e){return e.classList.contains('es');}),rest=wcs.filter(function(e){return !e.classList.contains('es');});
+  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){[].slice.call(h.querySelectorAll('.g')).forEach(function(e,k){var r=(Math.sin(k*12.9898)*43758.5453)%1;r=r<0?r+1:r;var l2=!!e.closest('.ln:nth-child(2)');e.style.setProperty('--p',r.toFixed(3));e.style.setProperty('--lv',((l2?.16:.36)+r*.1).toFixed(3)+'em');});var wcs=[].slice.call(h.querySelectorAll('.wc')),es=wcs.filter(function(e){return e.classList.contains('es');}),rest=wcs.filter(function(e){return !e.classList.contains('es');});
       if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||es.length<2){h.classList.add('go');wcs.forEach(function(e){e.style.opacity=1;});}
       else{setTimeout(function(){h.classList.add('go');},900);
         /* MEETS에 생긴 E와 S가 아래 WELLNESS의 E·S 자리로 내려앉는다 */
