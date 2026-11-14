@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14m1">
+<link rel="stylesheet" href="./style.css?v=2026.11.14m2">
 </head>
 <body>
 <!--BODY-->
@@ -59,7 +59,7 @@
     <div class="wrap in">
       <div class="copy">
         <p class="kicker">NURMEAT Co., Ltd.</p>
-        <h1 class="h3l"><span class="ln"><span>MEAT</span></span><span class="ln"><span>MEETS</span></span><span class="ln"><span>WELLNESS.</span></span></h1>
+        <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true">MEAT</span><span class="ln" aria-hidden="true">ME<span class="flip"><i>A</i><i>E</i></span>T<span class="s">S</span></span><span class="ln w" aria-hidden="true">WELLNESS.</span></h1>
         <p class="sub"><b>육류 식품제조 전문기업 ㈜널미트</b></p>
       </div>
     </div>
@@ -306,8 +306,8 @@
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
 
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
-  (function(){var h=document.querySelector('.hero h1');if(!h)return;h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());
-    var n=0;[].slice.call(h.querySelectorAll('.ln > span')).forEach(function(sp,li){var t=sp.textContent;sp.textContent='';sp.setAttribute('aria-hidden','true');
+  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){setTimeout(function(){h.classList.add('go');},900);}else{h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());}
+    var n=0;if(!r3)[].slice.call(h.querySelectorAll('.ln > span')).forEach(function(sp,li){var t=sp.textContent;sp.textContent='';sp.setAttribute('aria-hidden','true');
       t.split('').forEach(function(c,ci){var i=document.createElement('i');i.className='ch'+(li<2&&ci===2?' pun':'');i.style.setProperty('--i',n++);i.style.setProperty('--l',li);i.style.setProperty('--c',ci);i.textContent=c===' '?'\u00a0':c;sp.appendChild(i);});});
     h.classList.add('h3d');
     if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
