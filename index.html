@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14m9">
+<link rel="stylesheet" href="./style.css?v=2026.11.14n2">
 </head>
 <body>
 <!--BODY-->
@@ -305,7 +305,10 @@
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
 
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
-  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){[].slice.call(h.querySelectorAll('.g')).forEach(function(e,k){var r=(Math.sin(k*12.9898)*43758.5453)%1;r=r<0?r+1:r;var l2=!!e.closest('.ln:nth-child(2)');e.style.setProperty('--p',r.toFixed(3));e.style.setProperty('--lv',((l2?.16:.36)+r*.1).toFixed(3)+'em');});var wcs=[].slice.call(h.querySelectorAll('.wc')),es=wcs.filter(function(e){return e.classList.contains('es');}),rest=wcs.filter(function(e){return !e.classList.contains('es');});
+  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){/* 굴러가는 칸의 폭을 실제 글자 폭(A, E)에 맞춘다 */
+      var fitW=function(){var fz=parseFloat(getComputedStyle(h).fontSize)||1;['A','E'].forEach(function(ch){var sp=document.createElement('span');sp.textContent=ch;sp.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;padding:0;left:0;top:0';h.appendChild(sp);var w=sp.getBoundingClientRect().width;h.removeChild(sp);if(w>0)h.style.setProperty(ch==='A'?'--wa':'--we',(w/fz+.015).toFixed(3)+'em');});};
+      fitW();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitW);
+      [].slice.call(h.querySelectorAll('.g')).forEach(function(e,k){var r=(Math.sin(k*12.9898)*43758.5453)%1;r=r<0?r+1:r;var l2=!!e.closest('.ln:nth-child(2)');e.style.setProperty('--p',r.toFixed(3));e.style.setProperty('--lv',((l2?.16:.36)+r*.1).toFixed(3)+'em');});var wcs=[].slice.call(h.querySelectorAll('.wc')),es=wcs.filter(function(e){return e.classList.contains('es');}),rest=wcs.filter(function(e){return !e.classList.contains('es');});
       if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||es.length<2){h.classList.add('go');wcs.forEach(function(e){e.style.opacity=1;});}
       else{var tm=[];
         function play(){tm.forEach(clearTimeout);tm=[];h.classList.add('rst');h.classList.remove('go');wcs.forEach(function(t){t.classList.remove('fly');t.style.transition='none';t.style.transform='';t.style.opacity='';});void h.offsetWidth;h.classList.remove('rst');
