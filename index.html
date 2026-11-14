@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14n4">
+<link rel="stylesheet" href="./style.css?v=2026.11.14n5">
 </head>
 <body>
 <!--BODY-->
@@ -431,7 +431,7 @@ window.addEventListener('DOMContentLoaded',function(){
     falls.forEach(function(g,i){var u=g.userData,k=((t*u.sp+u.ph)%1+1)%1;g.visible=!lite&&!(m&&i>5);
       var span=m?hh*1.05:2*hh,fade=m?Math.min(1,(1-k)*5):1;g.position.set((m?(u.x-2.8)*.5:u.x)+Math.sin(t*.7+i)*.12,hh-k*span,u.z);g.rotation.set(-.6+t*u.rx+i,t*u.ry+i*1.3,t*u.rz);g.scale.setScalar(u.s*(m?.8:1)*fade);});
     cam.position.x=st.mx*.25;cam.position.y=-st.my*.15;cam.lookAt(0,0,0);bgU.t.value=t;R.render(scene,cam);}
-  var fr=0;function loop(now){if(!lite||(fr++&1)===0)draw(now);if(vis&&!reduce)raf=requestAnimationFrame(loop);}
+  function loop(now){draw(now);if(vis&&!reduce)raf=requestAnimationFrame(loop);}
   window.addEventListener('resize',function(){size();if(!vis||reduce)draw(0);});
   window.addEventListener('scroll',function(){prog();if(reduce&&vis)draw(0);},{passive:true});
   sec.addEventListener('pointermove',function(e){var r=sec.getBoundingClientRect();st.tx=((e.clientX-r.left)/r.width-.5)*2;st.ty=((e.clientY-r.top)/r.height-.5)*2;},{passive:true});
