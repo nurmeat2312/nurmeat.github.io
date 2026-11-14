@@ -1257,3 +1257,4 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){.hero h1.h3r .g{color:#fff;-webkit-text-fill-color:#fff}}
 @media (prefers-reduced-motion:reduce){.hero h1.h3r .g{animation:none!important}}
 @media (max-width:860px){.hero h1.h3r .g{-webkit-text-stroke-width:1.1px}}
+.hero h1.h3r.rst .flip,.hero h1.h3r.rst .s{transition:none!important}
