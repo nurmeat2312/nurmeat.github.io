@@ -1208,3 +1208,15 @@ body:not(.vb) #quality{padding-top:var(--pt)}
   .rows li{padding:16px 0}
 }
 @media (max-width:640px){.m-hide{display:none}}
+
+/* v30: 첫 화면 제목 3줄. MEAT / MEETS / WELLNESS 가 위에서 차례로 떨어지고, MEAT와 MEETS의 다른 한 글자를 하늘색으로 짚는다 */
+.hero h1.h3l{line-height:.94;letter-spacing:-.02em}
+.hero h1.h3l.h3d .ln{display:block;overflow:hidden;padding:.04em 0 .06em;margin:-.04em 0 -.02em}
+.hero h1.h3l.h3d .ln:nth-child(-n+2) .ch{width:.66em;text-align:center}
+.hero h1.h3l.h3d .ch{animation:chDrop .62s cubic-bezier(.2,1.25,.35,1) calc(var(--l) * 240ms + var(--c) * 26ms + 120ms) both}
+@keyframes chDrop{from{opacity:0;transform:translateY(-1.2em)}55%{opacity:1}to{opacity:1;transform:none}}
+.hero h1.h3l.h3d .ch.pun{background-image:linear-gradient(115deg,rgba(133,192,221,1) 0%,rgba(133,192,221,.75) 40%,rgba(190,225,241,.95) 100%);-webkit-text-stroke-color:#A9D6EC;
+  animation:chDrop .62s cubic-bezier(.2,1.25,.35,1) calc(var(--l) * 240ms + var(--c) * 26ms + 120ms) both,punPop .7s cubic-bezier(.3,1.6,.4,1) 1.25s both}
+@keyframes punPop{0%{scale:1}45%{scale:1.22}100%{scale:1}}
+@media (prefers-reduced-motion:reduce){.hero h1.h3l.h3d .ch,.hero h1.h3l.h3d .ch.pun{animation:none}}
+@media (max-width:640px){.hero h1.h3l.h3d{font-size:44px}}

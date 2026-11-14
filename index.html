@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14k7">
+<link rel="stylesheet" href="./style.css?v=2026.11.14m1">
 </head>
 <body>
 <!--BODY-->
@@ -59,7 +59,7 @@
     <div class="wrap in">
       <div class="copy">
         <p class="kicker">NURMEAT Co., Ltd.</p>
-        <h1><span class="ln"><span>Meat Meets</span></span><span class="ln"><span>Wellness.</span></span></h1>
+        <h1 class="h3l"><span class="ln"><span>MEAT</span></span><span class="ln"><span>MEETS</span></span><span class="ln"><span>WELLNESS.</span></span></h1>
         <p class="sub"><b>육류 식품제조 전문기업 ㈜널미트</b></p>
       </div>
     </div>
@@ -307,8 +307,8 @@
 
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
   (function(){var h=document.querySelector('.hero h1');if(!h)return;h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());
-    var n=0;[].slice.call(h.querySelectorAll('.ln > span')).forEach(function(sp){var t=sp.textContent;sp.textContent='';sp.setAttribute('aria-hidden','true');
-      t.split('').forEach(function(c){var i=document.createElement('i');i.className='ch';i.style.setProperty('--i',n++);i.textContent=c===' '?'\u00a0':c;sp.appendChild(i);});});
+    var n=0;[].slice.call(h.querySelectorAll('.ln > span')).forEach(function(sp,li){var t=sp.textContent;sp.textContent='';sp.setAttribute('aria-hidden','true');
+      t.split('').forEach(function(c,ci){var i=document.createElement('i');i.className='ch'+(li<2&&ci===2?' pun':'');i.style.setProperty('--i',n++);i.style.setProperty('--l',li);i.style.setProperty('--c',ci);i.textContent=c===' '?'\u00a0':c;sp.appendChild(i);});});
     h.classList.add('h3d');
     if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       var hero=document.querySelector('.hero'),tx=0,ty=0,cx=0,cy=0,run=false;
