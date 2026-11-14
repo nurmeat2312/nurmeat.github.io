@@ -1221,7 +1221,7 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 .js.loaded .hero h1.h3r .ln:nth-child(2){transition-delay:.12s}
 .js .hero h1.h3r .ln.w,.js.loaded .hero h1.h3r .ln.w{opacity:0;transform:translateY(.28em);transition-delay:0s}
 .js.loaded .hero h1.h3r.go .ln.w{opacity:1;transform:none;transition-delay:.75s}
-.hero h1.h3r .flip,.hero h1.h3r .s{color:var(--sky);--e1:#6FB1D2;--e2:#5AA2C6;--e3:#4593BA;--e4:#3284AD;--e5:#2478A3;--e6:#1F6E96;
+.hero h1.h3r .ln:nth-child(2){color:var(--sky);--e1:#6FB1D2;--e2:#5AA2C6;--e3:#4593BA;--e4:#3284AD;--e5:#2478A3;--e6:#1F6E96;
   text-shadow:calc(var(--sx,-.6px)*1) calc(var(--sy,1px)*1) 0 var(--e1),calc(var(--sx,-.6px)*2) calc(var(--sy,1px)*2) 0 var(--e2),calc(var(--sx,-.6px)*3) calc(var(--sy,1px)*3) 0 var(--e3),calc(var(--sx,-.6px)*4) calc(var(--sy,1px)*4) 0 var(--e4),calc(var(--sx,-.6px)*5) calc(var(--sy,1px)*5) 0 var(--e5),calc(var(--sx,-.6px)*6) calc(var(--sy,1px)*6) 0 var(--e6),calc(var(--sx,-.6px)*10) calc(var(--sy,1px)*14) 24px rgba(0,0,0,.45)}
 .hero h1.h3r .ln span,.hero h1.h3r .ln i{-webkit-mask-image:none!important;mask-image:none!important;animation:none!important;padding:0!important}
 .hero h1.h3r .ln .flip{display:inline-block;position:relative;width:.74em;height:.95em;vertical-align:top;transform-style:preserve-3d;transform:translateZ(-.475em) rotateX(0deg)!important;transition:transform .85s cubic-bezier(.6,-.25,.25,1.3)!important}
