@@ -1233,3 +1233,9 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 .hero h1.h3r.go .ln .s{max-width:1em;opacity:1;overflow:visible}
 @media (prefers-reduced-motion:reduce){.hero h1.h3r .flip,.hero h1.h3r .s,.js .hero h1.h3r .ln{transition:none}}
 @media (max-width:640px){.hero h1.h3r{font-size:44px}}
+
+/* v31: MEETS의 E·S가 아래로 내려앉고, 거기서 WELLNESS가 양옆으로 퍼진다 */
+.js .hero h1.h3r .ln.w,.js.loaded .hero h1.h3r .ln.w,.js.loaded .hero h1.h3r.go .ln.w{opacity:1;transform:none;transition:none}
+.hero h1.h3r .wc{display:inline-block;font-style:normal;transform-origin:50% 60%;will-change:transform;transition:color .5s ease}
+.js .hero h1.h3r .wc{opacity:0}
+.hero h1.h3r .wc.fly{color:var(--sky);--e1:#6FB1D2;--e2:#5AA2C6;--e3:#4593BA;--e4:#3284AD;--e5:#2478A3;--e6:#1F6E96}

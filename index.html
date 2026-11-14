@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.14m3">
+<link rel="stylesheet" href="./style.css?v=2026.11.14m4">
 </head>
 <body>
 <!--BODY-->
@@ -59,7 +59,7 @@
     <div class="wrap in">
       <div class="copy">
         <p class="kicker">NURMEAT Co., Ltd.</p>
-        <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true">MEAT</span><span class="ln" aria-hidden="true">ME<span class="flip"><i>A</i><i>E</i></span>T<span class="s">S</span></span><span class="ln w" aria-hidden="true">WELLNESS.</span></h1>
+        <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true">MEAT</span><span class="ln" aria-hidden="true">ME<span class="flip"><i>A</i><i>E</i></span>T<span class="s">S</span></span><span class="ln w" aria-hidden="true"><i class="wc">W</i><i class="wc">E</i><i class="wc">L</i><i class="wc">L</i><i class="wc">N</i><i class="wc es">E</i><i class="wc es">S</i><i class="wc">S</i><i class="wc">.</i></span></h1>
         <p class="sub"><b>육류 식품제조 전문기업 ㈜널미트</b></p>
       </div>
     </div>
@@ -306,7 +306,20 @@
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
 
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
-  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){setTimeout(function(){h.classList.add('go');},900);}else{h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());}
+  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){var wcs=[].slice.call(h.querySelectorAll('.wc')),es=wcs.filter(function(e){return e.classList.contains('es');}),rest=wcs.filter(function(e){return !e.classList.contains('es');});
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||es.length<2){h.classList.add('go');wcs.forEach(function(e){e.style.opacity=1;});}
+      else{setTimeout(function(){h.classList.add('go');},900);
+        /* MEETS에 생긴 E와 S가 아래 WELLNESS의 E·S 자리로 내려앉는다 */
+        setTimeout(function(){var src=[h.querySelector('.flip'),h.querySelector('.s')];
+          es.forEach(function(t,k){var a=src[k].getBoundingClientRect(),b=t.getBoundingClientRect();t.classList.add('fly');t.style.transition='none';t.style.opacity=1;
+            t.style.transform='translate('+(a.left+a.width/2-b.left-b.width/2).toFixed(1)+'px,'+(a.top-b.top).toFixed(1)+'px)';void t.offsetWidth;
+            t.style.transition='transform .75s cubic-bezier(.55,0,.2,1) '+(k*70)+'ms';t.style.transform='none';});},900+1250);
+        /* 내려앉은 ES에서 나머지 글자가 양옆으로 퍼진다 */
+        setTimeout(function(){var e0=es[0].getBoundingClientRect(),e1=es[1].getBoundingClientRect(),cx=(e0.left+e1.right)/2;
+          es.forEach(function(t){t.classList.remove('fly');});
+          rest.forEach(function(t){var r=t.getBoundingClientRect(),d=cx-(r.left+r.width/2),ord=Math.round(Math.abs(d)/r.width);t.style.transition='none';t.style.transform='translateX('+(d*.85).toFixed(1)+'px) scaleX(.3)';void t.offsetWidth;
+            t.style.transition='transform .8s cubic-bezier(.16,1,.3,1) '+(ord*45)+'ms,opacity .35s ease '+(ord*45)+'ms';t.style.transform='none';t.style.opacity=1;});},900+1250+900);}
+    }else{h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());}
     var n=0;if(!r3)[].slice.call(h.querySelectorAll('.ln > span')).forEach(function(sp,li){var t=sp.textContent;sp.textContent='';sp.setAttribute('aria-hidden','true');
       t.split('').forEach(function(c,ci){var i=document.createElement('i');i.className='ch'+(li<2&&ci===2?' pun':'');i.style.setProperty('--i',n++);i.style.setProperty('--l',li);i.style.setProperty('--c',ci);i.textContent=c===' '?'\u00a0':c;sp.appendChild(i);});});
     h.classList.add('h3d');
