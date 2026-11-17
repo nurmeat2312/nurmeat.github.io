@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.17b1">
+<link rel="stylesheet" href="./style.css?v=2026.11.17c2">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "주식회사 널미트", "alternateName": ["널미트", "NURMEAT", "㈜널미트"], "url": "https://nurmeat.com/", "logo": "https://nurmeat.com/favicon-192.png", "email": "nurmeat@naver.com", "telephone": "+82-53-716-7992", "address": {"@type": "PostalAddress", "addressCountry": "KR", "addressRegion": "대구광역시", "addressLocality": "달성군", "streetAddress": "화원읍 성천로 5, 달성청년혁신센터 404호"}}</script>
 </head>
 <body>
@@ -53,24 +53,13 @@
 
 <main id="top">
 
-  <section class="hero">
-    <video autoplay muted loop playsinline poster="./assets/photo/hero-poster.jpg">
-      <source src="./assets/video/hero.mp4" type="video/mp4">
-    </video>
-    <div class="wrap in">
-      <div class="copy">
-        <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true"><i class="g">M</i><i class="g">E</i><i class="g">A</i><i class="g">T</i></span><span class="ln" aria-hidden="true"><i class="g">M</i><i class="g">E</i><span class="flip"><i class="g">A</i><i class="g">E</i></span><i class="g">T</i><span class="s g">S</span></span><span class="ln w" aria-hidden="true"><i class="wc g">W</i><i class="wc g">E</i><i class="wc g">L</i><i class="wc g">L</i><i class="wc g">N</i><i class="wc g es">E</i><i class="wc g es">S</i><i class="wc g">S</i><i class="wc g">.</i></span></h1>
-        <p class="sub"><b>육류 식품제조 전문기업 ㈜널미트</b></p>
-      </div>
-    </div>
-  </section>
-
   <!-- LOGO 3D -->
-  <section class="l3" id="l3" aria-label="널미트 슬로건">
+  <section class="l3 hero3" id="l3" aria-label="널미트 슬로건">
     <canvas id="l3c" aria-hidden="true"></canvas>
     <div class="l3-tx">
-      <p class="l3-k">MEAT MEETS WELLNESS</p>
-      <h2 class="l3-h">건강과 고기가<br>만나는 지점.</h2>
+      <h1 class="h3r" aria-label="Meat Meets Wellness"><span class="ln" aria-hidden="true"><i class="g">M</i><i class="g">E</i><i class="g">A</i><i class="g">T</i></span><span class="ln" aria-hidden="true"><i class="g">M</i><i class="g">E</i><span class="flip"><i class="g">A</i><i class="g">E</i></span><i class="g">T</i><span class="s g">S</span></span><span class="ln w" aria-hidden="true"><i class="wc g">W</i><i class="wc g">E</i><i class="wc g">L</i><i class="wc g">L</i><i class="wc g">N</i><i class="wc g es">E</i><i class="wc g es">S</i><i class="wc g">S</i><i class="wc g">.</i></span></h1>
+      <p class="l3-h">건강과 고기가 만나는 지점.</p>
+      <p class="l3-s">육류 식품제조 전문기업 ㈜널미트</p>
     </div>
   </section>
 
@@ -307,7 +296,7 @@
       el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});});}
 
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
-  (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){/* 굴러가는 칸의 폭을 실제 글자 폭(A, E)에 맞춘다 */
+  (function(){var h=document.querySelector('h1.h3r');if(!h)return;var r3=h.classList.contains('h3r');if(r3){/* 굴러가는 칸의 폭을 실제 글자 폭(A, E)에 맞춘다 */
       var fitW=function(){var fz=parseFloat(getComputedStyle(h).fontSize)||1;['A','E'].forEach(function(ch){var sp=document.createElement('span');sp.textContent=ch;sp.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;padding:0;left:0;top:0';h.appendChild(sp);var w=sp.getBoundingClientRect().width;h.removeChild(sp);if(w>0)h.style.setProperty(ch==='A'?'--wa':'--we',(w/fz+.015).toFixed(3)+'em');});};
       /* 가장 긴 줄(WELLNESS.)이 화면 폭을 넘으면 글자 크기를 줄여 맞춘다 */
       var fitT=function(){h.style.fontSize='';var par=h.parentElement,pc=getComputedStyle(par),avail=par.clientWidth-parseFloat(pc.paddingLeft)-parseFloat(pc.paddingRight),w=0;
@@ -338,7 +327,7 @@
       t.split('').forEach(function(c,ci){var i=document.createElement('i');i.className='ch'+(li<2&&ci===2?' pun':'');i.style.setProperty('--i',n++);i.style.setProperty('--l',li);i.style.setProperty('--c',ci);i.textContent=c===' '?'\u00a0':c;sp.appendChild(i);});});
     h.classList.add('h3d');
     if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      var hero=document.querySelector('.hero'),tx=0,ty=0,cx=0,cy=0,run=false;
+      var hero=document.getElementById('l3'),tx=0,ty=0,cx=0,cy=0,run=false;
       function step(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;h.style.setProperty('--ry',(cx*9).toFixed(2)+'deg');h.style.setProperty('--rx',(-cy*7).toFixed(2)+'deg');h.style.setProperty('--sx',(-cx*1.6).toFixed(2)+'px');h.style.setProperty('--sy',(1+cy*1.2).toFixed(2)+'px');h.style.setProperty('--gp',(50+cx*40).toFixed(1)+'%');
         if(Math.abs(tx-cx)+Math.abs(ty-cy)>.002)requestAnimationFrame(step);else run=false;}
       hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2;if(!run){run=true;requestAnimationFrame(step);}});
@@ -427,9 +416,9 @@ window.addEventListener('DOMContentLoaded',function(){
   function prog(){var r=sec.getBoundingClientRect(),vh=window.innerHeight;st.tp=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));}
   function draw(now){var t=reduce?0:(now-t0)/1000;st.p=reduce?st.tp:st.p+(st.tp-st.p)*.08;st.mx+=(st.tx-st.mx)*.05;st.my+=(st.ty-st.my)*.05;
     var q=st.p,m=mob.matches;
-    logo.position.set(m?0:2.0-q*.3,(m?1.15:0)+Math.sin(t*.8)*.07,0);
+    logo.position.set(m?0:2.0-q*.3,(m?.9:0)+Math.sin(t*.8)*.07,0);
     logo.rotation.set(-.95+q*1.15+Math.sin(t*.6)*.04+st.my*.1,-.9+q*1.5+Math.sin(t*.45)*.08+st.mx*.2,.12-q*.2);
-    logo.scale.setScalar(m?.62:.86);
+    logo.scale.setScalar(m?.78:.9);
     var sx=m?.42:1;
     drops.forEach(function(d){var u=d.userData,w=1+Math.sin(t*1.3+u.ph)*.05;d.position.set(u.x*sx+Math.sin(t*u.sp+u.ph)*.22+st.mx*u.z*.18,u.y+Math.cos(t*u.sp*.8+u.ph)*.26+(q-.5)*-2.4*(.4+u.r)+(m?.6:0),u.z);d.scale.set(u.r*w,u.r*(2-w),u.r*w);});
     if(lite)drops.forEach(function(d){d.visible=false;});
