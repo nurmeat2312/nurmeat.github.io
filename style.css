@@ -1265,3 +1265,13 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 .hero h1.h3r .ln .flip{width:var(--wa,.82em);transition:transform .85s cubic-bezier(.6,-.25,.25,1.3),width .6s ease .25s!important}
 .hero h1.h3r.go .ln .flip{width:var(--we,.74em)}
 .hero h1.h3r.rst .ln .flip{transition:none!important}
+
+/* v34: 생산 공정 3D 모형 */
+.p3stage{position:relative;display:none;width:100%;max-width:1080px;aspect-ratio:1.45/1;margin:clamp(20px,3vw,48px) auto clamp(8px,2vw,28px)}
+.p3stage.on{display:block}
+.p3stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.p3tag{position:absolute;left:0;top:0;white-space:nowrap;font-size:13px;font-weight:700;color:#0A0B0C;background:rgba(255,255,255,.94);border:1px solid rgba(10,11,12,.12);border-radius:999px;padding:7px 12px 7px 9px;display:flex;gap:7px;align-items:center;pointer-events:none;will-change:transform,opacity;box-shadow:0 6px 18px rgba(31,127,176,.14)}
+.p3tag b{font-family:"Archivo","Pretendard Variable",sans-serif;font-weight:600;font-size:11px;color:#fff;background:var(--deep);border-radius:999px;padding:3px 6px}
+#technology .p3stage.on+.chain{margin-top:clamp(8px,2vw,24px)}
+body:not(.vb) #technology .chain .node.now h3{color:var(--deep)}
+@media (max-width:860px){.p3stage{aspect-ratio:1/1.02;margin-top:8px}.p3tag{font-size:11px;padding:5px 9px 5px 7px}}
