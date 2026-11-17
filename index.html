@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.17a1">
+<link rel="stylesheet" href="./style.css?v=2026.11.17a2">
 </head>
 <body>
 <!--BODY-->
@@ -308,7 +308,11 @@
   /* 첫 화면 제목: 글자가 한 자씩 입체로 일어서고, 마우스를 따라 기울며 두께가 보인다 */
   (function(){var h=document.querySelector('.hero h1');if(!h)return;var r3=h.classList.contains('h3r');if(r3){/* 굴러가는 칸의 폭을 실제 글자 폭(A, E)에 맞춘다 */
       var fitW=function(){var fz=parseFloat(getComputedStyle(h).fontSize)||1;['A','E'].forEach(function(ch){var sp=document.createElement('span');sp.textContent=ch;sp.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;padding:0;left:0;top:0';h.appendChild(sp);var w=sp.getBoundingClientRect().width;h.removeChild(sp);if(w>0)h.style.setProperty(ch==='A'?'--wa':'--we',(w/fz+.015).toFixed(3)+'em');});};
-      fitW();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitW);
+      /* 가장 긴 줄(WELLNESS.)이 화면 폭을 넘으면 글자 크기를 줄여 맞춘다 */
+      var fitT=function(){h.style.fontSize='';var par=h.parentElement,pc=getComputedStyle(par),avail=par.clientWidth-parseFloat(pc.paddingLeft)-parseFloat(pc.paddingRight),w=0;
+        [].forEach.call(h.querySelectorAll('.ln'),function(l){w=Math.max(w,l.offsetWidth);});
+        if(avail>0&&w>avail){var fz=parseFloat(getComputedStyle(h).fontSize);h.style.fontSize=(fz*avail/w*.97).toFixed(2)+'px';}fitW();};
+      fitT();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitT);window.addEventListener('resize',fitT);window.addEventListener('load',fitT);
       [].slice.call(h.querySelectorAll('.g')).forEach(function(e,k){var r=(Math.sin(k*12.9898)*43758.5453)%1;r=r<0?r+1:r;var l2=!!e.closest('.ln:nth-child(2)');e.style.setProperty('--p',r.toFixed(3));e.style.setProperty('--lv',((l2?.16:.36)+r*.1).toFixed(3)+'em');});var wcs=[].slice.call(h.querySelectorAll('.wc')),es=wcs.filter(function(e){return e.classList.contains('es');}),rest=wcs.filter(function(e){return !e.classList.contains('es');});
       if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||es.length<2){h.classList.add('go');wcs.forEach(function(e){e.style.opacity=1;});}
       else{var tm=[];

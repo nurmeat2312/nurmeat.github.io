@@ -1275,3 +1275,7 @@ body:not(.vb) #quality{padding-top:var(--pt)}
 #technology .p3stage.on+.chain{margin-top:clamp(8px,2vw,24px)}
 body:not(.vb) #technology .chain .node.now h3{color:var(--deep)}
 @media (max-width:860px){.p3stage{aspect-ratio:1/1.02;margin-top:8px}.p3tag{font-size:11px;padding:5px 9px 5px 7px}}
+
+/* v35: 제목 줄 폭을 내용에 맞춰 재고, 휴대폰 기본 크기를 한 단계 낮춤 */
+.hero h1.h3r .ln{width:max-content;max-width:none}
+@media (max-width:640px){.hero h1.h3r{font-size:clamp(26px,10.4vw,42px)}}
