@@ -1310,3 +1310,9 @@ h1.h3r .ln:nth-child(2) .g,h1.h3r .wc.fly{background-image:linear-gradient(100de
   .l3.hero3 .l3-s{font-size:14px}
 }
 @media (max-width:640px){h1.h3r{font-size:clamp(26px,10.4vw,42px)}}
+/* v38: 공정이 7단계가 되어 칸 수를 맞춘다 */
+.chain{grid-template-columns:repeat(7,minmax(0,1fr))}
+.chain .node h3{white-space:nowrap}
+@media (max-width:1180px) and (min-width:861px){.chain .node h3{font-size:14.5px;letter-spacing:-.04em}.chain .node p{font-size:12px}.chain .node .ic{width:64px;height:64px;font-size:18px}.chain::before,.chain.fx::after{top:31px}}
+@media (max-width:860px){.chain{grid-template-columns:repeat(4,minmax(0,1fr))!important;row-gap:28px!important;column-gap:0!important}.chain .node h3{font-size:12.5px!important;letter-spacing:-.04em}}
+@media (max-width:640px){.chain .node .ic{width:46px!important;height:46px!important;font-size:14px}}
