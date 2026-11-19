@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap">
-<link rel="stylesheet" href="./style.css?v=2026.11.17b1">
+<link rel="stylesheet" href="./style.css?v=2026.11.19a1">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "주식회사 널미트", "alternateName": ["널미트", "NURMEAT", "㈜널미트"], "url": "https://nurmeat.com/", "logo": "https://nurmeat.com/favicon-192.png", "email": "nurmeat@naver.com", "telephone": "+82-53-716-7992", "address": {"@type": "PostalAddress", "addressCountry": "KR", "addressRegion": "대구광역시", "addressLocality": "달성군", "streetAddress": "화원읍 성천로 5, 달성청년혁신센터 404호"}}</script>
 </head>
 <body>
@@ -113,14 +113,15 @@
     <div class="wrap">
       <p class="lab rv">생산시설 · 달성군 제1공장</p>
       <h2 class="hx en big rv">Facilities</h2>
-      <div class="p3stage rv" id="p3stage"><canvas id="p3cv" aria-label="원료육이 여섯 단계를 거쳐 한 바퀴 도는 공정 모형"></canvas></div>
+      <div class="p3stage rv" id="p3stage"><canvas id="p3cv" aria-label="원료육이 일곱 단계를 거쳐 한 바퀴 도는 공정 모형"></canvas></div>
       <div class="chain" id="valuechain">
         <div class="node rv"><div class="ic">01</div><h3>원료육 입고</h3><p>검수 기준에 따른 입고 검사</p></div>
         <div class="node rv d1"><div class="ic">02</div><h3>가공 · 정형</h3><p>거래처별 규격에 맞춘 손질</p></div>
         <div class="node key rv d2"><div class="ic">03</div><h3>맞춤 가공</h3><p>슬라이스 · 양념 · 수비드 조리</p></div>
         <div class="node key rv d3"><div class="ic">04</div><h3>진공 포장</h3><p>열성형 밀착 포장으로 신선도 유지</p></div>
-        <div class="node rv d4"><div class="ic">05</div><h3>급속 냉각</h3><p>미생물 번식 구간 최소화</p></div>
-        <div class="node rv d5"><div class="ic">06</div><h3>출하 · 공급</h3><p>지역별 배송 일정에 따라 공급</p></div>
+        <div class="node rv d4"><div class="ic">05</div><h3>금속검출 · 검수</h3><p>금속검출기 통과 후 검수</p></div>
+        <div class="node rv d4"><div class="ic">06</div><h3>급속 냉각</h3><p>미생물 번식 구간 최소화</p></div>
+        <div class="node rv d5"><div class="ic">07</div><h3>출하 · 공급</h3><p>지역별 배송 일정에 따라 공급</p></div>
       </div>
     </div>
     <div class="wrap">
@@ -287,7 +288,7 @@
     els.forEach(function(el){io.observe(el);});
   } else els.forEach(function(el){el.classList.add('on');});
 
-  /* 공정 6단계: 스크롤에 따라 선이 그어지고 단계가 켜진다 */
+  /* 공정 7단계: 스크롤에 따라 선이 그어지고 단계가 켜진다 */
   var chain=document.querySelector('.chain');
   if(chain){var nodes=[].slice.call(chain.querySelectorAll('.node'));chain.classList.add('fx');
     var cp=function(){var r=chain.getBoundingClientRect(),vh=window.innerHeight,p=Math.min(1,Math.max(0,(vh*.82-r.top)/(vh*.5)));
@@ -464,7 +465,7 @@ window.addEventListener('DOMContentLoaded',function(){
     sz();d2(0);
   })();
 });
-/* 생산 공정 3D: 원료육이 여섯 단계를 거쳐 한 바퀴 도는 모형 */
+/* 생산 공정 3D: 원료육이 일곱 단계를 거쳐 한 바퀴 도는 모형 */
 window.addEventListener('DOMContentLoaded',function(){
   var stage=document.getElementById('p3stage'),cv=document.getElementById('p3cv'),T=window.THREE,R;
   if(!stage||!cv||!T)return;
@@ -485,7 +486,7 @@ window.addEventListener('DOMContentLoaded',function(){
     card:M(0xFFFFFF,{roughness:.7}),tire:M(0x1B1F22,{roughness:.9}),bub:M(0xffffff,{transparent:true,opacity:.75,roughness:.1})};
   function mesh(g,m,sh){var o=new T.Mesh(g,m);if(sh!==false){o.castShadow=true;}o.receiveShadow=true;return o;}
   function box(w,h,d,m,x,y,z,sh){var o=mesh(new T.BoxGeometry(w,h,d),m,sh);o.position.set(x||0,y||0,z||0);return o;}
-  var RB=3.8,BY=.42,SEC=Math.PI/3;
+  var RB=3.8,BY=.42,NS=7,SEC=Math.PI*2/NS;
   /* 고기 모양: 스테이크 윤곽을 곡선으로 그려 두께를 준다 (상자 대신) */
   var mc=new T.CatmullRomCurve3([[-.30,-.03],[-.25,.15],[-.09,.24],[.10,.21],[.27,.13],[.32,-.03],[.24,-.18],[.08,-.23],[-.05,-.16],[-.19,-.21]].map(function(p){return new T.Vector3(p[0],p[1],0);}),true,'catmullrom',.6);
   var msh=new T.Shape(mc.getPoints(56).map(function(p){return new T.Vector2(p.x,p.y);}));
@@ -524,23 +525,28 @@ window.addEventListener('DOMContentLoaded',function(){
   var bl2=mesh(new T.CylinderGeometry(.14,.14,.08,24),mat.deep);bl2.rotation.x=Math.PI/2;bl2.position.set(0,1.0,0);st2.add(bl2);
   var bmark=box(.5,.03,.05,mat.sky,.3,0,0,false);blade.add(bmark);
   plat.add(put(st2,SEC*2,RB,0));
-  var tank=new T.Group();tank.add(box(1.75,1.0,3.1,mat.water,0,.55,0,false));
-  [[0,.6,1.58,1.85,1.2,.05],[0,.6,-1.58,1.85,1.2,.05],[.9,.6,0,.05,1.2,3.2],[-.9,.6,0,.05,1.2,3.2]].forEach(function(w){tank.add(box(w[3],w[4],w[5],mat.glass,w[0],w[1],w[2],false));});
-  tank.add(box(1.95,.06,3.3,mat.steel,0,.03,0));
-  [[.95,1.6],[-.95,1.6],[.95,-1.6],[-.95,-1.6]].forEach(function(c){tank.add(box(.07,1.24,.07,mat.steel,c[0],.62,c[1]));});
-  var bubs=[];for(i=0;i<(lite?8:16);i++){var b=mesh(new T.SphereGeometry(.045+((i*7)%5)*.012,10,8),mat.bub,false);b.userData={x:((i*37)%17)/17*1.4-.7,z:((i*53)%23)/23*2.6-1.3,ph:i*.61,sp:.35+((i*11)%7)/20};tank.add(b);bubs.push(b);}
-  plat.add(put(tank,SEC*2.55,3.72,0));
-  /* 05 급속 냉각: 냉각 터널과 돌아가는 팬 */
+  var tank=new T.Group();tank.add(box(1.75,1.0,2.5,mat.water,0,.55,0,false));
+  [[0,.6,1.28,1.85,1.2,.05],[0,.6,-1.28,1.85,1.2,.05],[.9,.6,0,.05,1.2,2.6],[-.9,.6,0,.05,1.2,2.6]].forEach(function(w){tank.add(box(w[3],w[4],w[5],mat.glass,w[0],w[1],w[2],false));});
+  tank.add(box(1.95,.06,2.7,mat.steel,0,.03,0));
+  [[.95,1.3],[-.95,1.3],[.95,-1.3],[-.95,-1.3]].forEach(function(c){tank.add(box(.07,1.24,.07,mat.steel,c[0],.62,c[1]));});
+  var bubs=[];for(i=0;i<(lite?8:16);i++){var b=mesh(new T.SphereGeometry(.045+((i*7)%5)*.012,10,8),mat.bub,false);b.userData={x:((i*37)%17)/17*1.4-.7,z:((i*53)%23)/23*2.1-1.05,ph:i*.61,sp:.35+((i*11)%7)/20};tank.add(b);bubs.push(b);}
+  plat.add(put(tank,SEC*2.56,3.74,0));
+  /* 06 급속 냉각: 냉각 터널과 돌아가는 팬 */
   var st3=new T.Group(),fan=new T.Group();
-  for(i=0;i<5;i++){var a=SEC*4.2+i*(SEC*.62/4),seg=new T.Group();seg.add(box(1.5,.07,.62,mat.frost,0,1.12,0,false));seg.add(box(.06,.72,.62,mat.white,.72,.78,0));seg.add(box(.06,.72,.62,mat.white,-.72,.78,0));st3.add(put(seg,a,RB,0));}
+  for(i=0;i<5;i++){var a=SEC*5.2+i*(SEC*.62/4),seg=new T.Group();seg.add(box(1.5,.07,.62,mat.frost,0,1.12,0,false));seg.add(box(.06,.72,.62,mat.white,.72,.78,0));seg.add(box(.06,.72,.62,mat.white,-.72,.78,0));st3.add(put(seg,a,RB,0));}
   plat.add(st3);
   fan.add(mesh(new T.CylinderGeometry(.12,.12,.14,20),mat.deep));for(i=0;i<4;i++){var fb=box(.62,.03,.2,mat.white,.36,0,0);var arm=new T.Group();arm.add(fb);fb.rotation.x=.35;arm.rotation.y=i*Math.PI/2;fan.add(arm);}
-  var fanBase=new T.Group();fanBase.add(mesh(new T.CylinderGeometry(.75,.75,.06,40),mat.sky));fan.position.y=.14;fanBase.add(fan);plat.add(put(fanBase,SEC*4.5,RB,1.19));
+  var fanBase=new T.Group();fanBase.add(mesh(new T.CylinderGeometry(.75,.75,.06,40),mat.sky));fan.position.y=.14;fanBase.add(fan);plat.add(put(fanBase,SEC*5.5,RB,1.19));
   /* 04 진공 포장: 눌러서 밀봉하는 프레스 */
   var st4=new T.Group();st4.add(box(.14,1.4,.14,mat.steel,-.75,.7,0));st4.add(box(.14,1.4,.14,mat.steel,.75,.7,0));st4.add(box(1.64,.2,.5,mat.deep,0,1.4,0));
   var press=new T.Group();press.add(box(.1,.5,.1,mat.steel,0,.3,0));press.add(box(1.0,.1,.7,mat.sky,0,0,0));st4.add(press);plat.add(put(st4,SEC*3,RB,0));
-  /* 06 출하·공급: 상자와 배송 차량 */
-  var st5=new T.Group();st5.add(box(.12,1.1,.12,mat.steel,-.72,.55,0));st5.add(box(.12,1.1,.12,mat.steel,.72,.55,0));st5.add(box(1.56,.12,.12,mat.steel,0,1.1,0));plat.add(put(st5,SEC*5,RB,0));
+  /* 05 금속검출·검수: 벨트를 감싼 검출기와 깜빡이는 확인등 */
+  var st45=new T.Group();st45.add(box(.2,1.05,.7,mat.steel,-.78,.525,0));st45.add(box(.2,1.05,.7,mat.steel,.78,.525,0));st45.add(box(1.76,.34,.7,mat.deep,0,1.2,0));st45.add(box(1.3,.05,.6,mat.sky,0,1.02,0,false));
+  st45.add(box(.5,.3,.04,mat.white,0,1.2,.36));
+  var lamp=mesh(new T.SphereGeometry(.09,16,12),new T.MeshStandardMaterial({color:0x3DDC84,emissive:0x3DDC84,emissiveIntensity:.9,roughness:.3}),false);lamp.position.set(.62,1.46,0);st45.add(lamp);
+  st45.add(box(.06,.12,.06,mat.steel,.62,1.4,0));plat.add(put(st45,SEC*4,RB,0));
+  /* 07 출하·공급: 상자와 배송 차량 */
+  var st5=new T.Group();st5.add(box(.12,1.1,.12,mat.steel,-.72,.55,0));st5.add(box(.12,1.1,.12,mat.steel,.72,.55,0));st5.add(box(1.56,.12,.12,mat.steel,0,1.1,0));plat.add(put(st5,SEC*6,RB,0));
   var truck=new T.Group();truck.add(box(1.0,.95,1.7,mat.white,0,.75,-.2));truck.add(box(1.02,.16,1.72,mat.sky,0,.5,-.2));truck.add(box(.95,.7,.6,mat.deep,0,.6,.98));truck.add(box(.8,.3,.05,mat.frost,0,.75,1.29,false));truck.add(box(.9,.1,2.4,mat.tire,0,.22,.1));
   [[.5,-.7],[-.5,-.7],[.5,.85],[-.5,.85]].forEach(function(w){var c=mesh(new T.CylinderGeometry(.2,.2,.14,20),mat.tire);c.rotation.z=Math.PI/2;c.position.set(w[0],.2,w[1]);truck.add(c);});
   /* 차량 적재함 양옆과 뒷면에 널미트 로고 */
@@ -550,18 +556,18 @@ window.addEventListener('DOMContentLoaded',function(){
     [1,-1].forEach(function(sd){var p=new T.Mesh(new T.PlaneGeometry(1.02,.66),lm);p.position.set(sd*.507,.86,-.2);p.rotation.y=sd*Math.PI/2;truck.add(p);});
     var bk=new T.Mesh(new T.PlaneGeometry(.86,.556),lm);bk.position.set(0,.84,-1.057);bk.rotation.y=Math.PI;truck.add(bk);};
     img.src='./assets/img/logo.png';})();
-  plat.add(put(truck,SEC*5.5,5.05,0));
+  plat.add(put(truck,SEC*6.5,5.05,0));
 
   /* 벨트 위를 도는 고기: 구간마다 모양이 바뀐다 */
   var N=lite?9:12,items=[];
   for(i=0;i<N;i++){var g=new T.Group(),f=[];
-    f.push(rawMeat(1.2));f.push(trimMeat());f.push(slices(mat.red2));f.push(packed(mat.film));f.push(packed(mat.frost));
+    f.push(rawMeat(1.2));f.push(trimMeat());f.push(slices(mat.red2));f.push(packed(mat.film));f.push(packed(mat.film));f.push(packed(mat.frost));
     var bx=new T.Group();bx.add(box(.56,.4,.6,mat.card,0,.2,0));bx.add(box(.565,.09,.605,mat.sky,0,.22,0,false));f.push(bx);
     f.forEach(function(o){g.add(o);});g.userData={a0:i/N*Math.PI*2,f:f};plat.add(g);items.push(g);}
 
   /* 단계 이름표: 3D 위치를 화면 좌표로 옮겨 붙인다 */
-  var names=['원료육 입고','가공 · 정형','맞춤 가공','진공 포장','급속 냉각','출하 · 공급'],tags=[],anch=[];
-  var apos=[[SEC*.45,5.0,1.25],[SEC,RB,1.95],[SEC*2.5,3.72,1.6],[SEC*3,RB,1.95],[SEC*4.5,RB,1.75],[SEC*5.5,5.05,1.6]];
+  var names=['원료육 입고','가공 · 정형','맞춤 가공','진공 포장','금속검출 · 검수','급속 냉각','출하 · 공급'],tags=[],anch=[];
+  var apos=[[SEC*.45,5.0,1.25],[SEC,RB,1.95],[SEC*2.5,3.72,1.6],[SEC*3,RB,1.95],[SEC*4,RB,1.95],[SEC*5.5,RB,1.75],[SEC*6.5,5.05,1.6]];
   names.forEach(function(n,k){var d=document.createElement('div');d.className='p3tag';d.innerHTML='<b>0'+(k+1)+'</b>'+n;stage.appendChild(d);tags.push(d);var o=new T.Object3D();put(o,apos[k][0],apos[k][1],apos[k][2]);plat.add(o);anch.push(o);});
   var lis=[].slice.call(document.querySelectorAll('#valuechain .node'));
 
@@ -576,10 +582,10 @@ window.addEventListener('DOMContentLoaded',function(){
     knife.position.y=1.05-Math.abs(Math.sin(t*2.4))*.42;
     blade.rotation.y=t*9;
     press.position.y=.98-Math.max(0,Math.sin(t*2.1))*.42;
-    fan.rotation.y=t*6;
+    fan.rotation.y=t*6;lamp.material.emissiveIntensity=.35+.75*(Math.sin(t*5)>0?1:0);
     bubs.forEach(function(b){var u=b.userData,k=((t*u.sp+u.ph)%1+1)%1;b.position.set(u.x+Math.sin(t*2+u.ph)*.04,.12+k*.9,u.z);b.scale.setScalar(.6+k*.6);});
-    items.forEach(function(g){var u=g.userData,a=((u.a0+bw)%(Math.PI*2)+Math.PI*2)%(Math.PI*2),s=Math.min(5,Math.floor(a/SEC)),fr=a/SEC-s;
-      put(g,a,RB,BY);for(var k=0;k<6;k++)u.f[k].visible=k===s;
+    items.forEach(function(g){var u=g.userData,a=((u.a0+bw)%(Math.PI*2)+Math.PI*2)%(Math.PI*2),s=Math.min(NS-1,Math.floor(a/SEC)),fr=a/SEC-s;
+      put(g,a,RB,BY);for(var k=0;k<NS;k++)u.f[k].visible=k===s;
       var pop=fr<.12?1+Math.sin(fr/.12*Math.PI)*.22:1;g.scale.setScalar(pop);});
     R.render(scene,cam);
     /* 카메라 쪽으로 온 단계의 이름표를 진하게, 뒤쪽은 흐리게 */
